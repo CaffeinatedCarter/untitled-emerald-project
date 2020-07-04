@@ -9,6 +9,20 @@
 * Lower the encounter rate on water overall
 * Fix Feebas spawning (mirror ORAS!)
 
+## Area Ideas
+### Expansions
+* Shoal Cave
+* Underwater Routes
+* The route to Mt. Pyre
+* Fiery Path
+
+### Water Routes
+* Swampy or Marshy
+* Tropical
+* Polluted
+
+### Little Things
+* Ledge to Fallarbor 
 
 ## Patches
 * 720 Pokémon
