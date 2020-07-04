@@ -26,6 +26,7 @@
 ### Little Things
 * Ledge to Fallarbor 
 * Cut trees in front of the Cutter's house in Rustboro
+* Rock smashed in Rusturf tunnel should be distinct. Maybe need a high-level Pokémon to use strength? Maybe make the rock visually different? This one is weird and vague.
 
 ## Patches
 * 720 Pokémon
