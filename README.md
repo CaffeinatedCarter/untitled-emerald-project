@@ -11,6 +11,7 @@
 * Every time you pick up an item, you get the Pokéball as an item. Different balls for different rarity of items (Nugget → Great Ball, etc)
 * Cut trees and rocks smashed should not respawn on exiting area. Maybe should be on a timer? Only in the overworld and not in caves?
 * Nuzlocke/Randomizer/Challenge mode.
+* Fly point to the Berry Master's house? Potentially flying to routes in general?
 
 ## Area Ideas
 ### Expansions
@@ -20,6 +21,8 @@
 * Fiery Path
 * Elite Four → Separate Rooms, choose your own order
 * Ever Grande City → maybe merge with battle tower? Move Battle Tower to Ever Grande and have the Pokémon league be at the center? Have your mom and prominent characters there cheering you on?
+* Slateport Market → Add rotating berry dealer, rotating pokeball dealer, etc. Maybe pay for a random berry
+* Make Lilycove's pokemart more useful
 
 ### Water Routes
 * Swampy or Marshy
@@ -30,6 +33,7 @@
 * Ledge to Fallarbor 
 * Cut trees in front of the Cutter's house in Rustboro
 * Rock smashed in Rusturf tunnel should be distinct. Maybe need a high-level Pokémon to use strength? Maybe make the rock visually different? This one is weird and vague.
+
 
 ## Gyms
 * Tate and Liza – should be a doubles gym, not just Psychic
