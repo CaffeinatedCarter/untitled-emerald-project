@@ -18,6 +18,8 @@
 * Underwater Routes
 * The route to Mt. Pyre
 * Fiery Path
+* Elite Four → Separate Rooms, choose your own order
+* Ever Grande City → maybe merge with battle tower? Move Battle Tower to Ever Grande and have the Pokémon league be at the center? Have your mom and prominent characters there cheering you on?
 
 ### Water Routes
 * Swampy or Marshy
@@ -41,5 +43,6 @@
 
 ### Never gonna happens (but would LOVE)
 * Rotation battles
+* Doubles movesets
 * Trainer customization
   * This could literally just be "select ur favorite color" at the beginning to pick outfit color
