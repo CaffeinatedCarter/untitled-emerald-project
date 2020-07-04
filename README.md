@@ -8,6 +8,7 @@
   *  Is this something that happens on the PC?
 * Lower the encounter rate on water overall
 * Fix Feebas spawning (mirror ORAS!)
+* Every time you pick up an item, you get the Pokéball as an item. Different balls for different rarity of items (Nugget → Great Ball, etc)
 
 ## Area Ideas
 ### Expansions
