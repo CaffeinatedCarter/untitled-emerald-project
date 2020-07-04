@@ -5,7 +5,7 @@
 * Gyms should be a gauntlet. Set style only, can't exit without restarting trainers. Move Jim outside blocking the door to confirm the gauntlet.
 * HM items? Field moves?
 * There should be a way to rapid level up Pokémon. 6 levels per gym badge unlocked. Beating Brawly unlocks this. Up to 60 after beating Elite 4 once. Up to 100 after beating a second time.
- * Is this something that happens on the PC?
+ ** Is this something that happens on the PC?
 * Lower the encounter rate on water overall
 * Fix Feebas spawning (mirror ORAS!)
 
