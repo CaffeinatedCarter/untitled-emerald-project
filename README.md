@@ -28,7 +28,17 @@
 * Cut trees in front of the Cutter's house in Rustboro
 * Rock smashed in Rusturf tunnel should be distinct. Maybe need a high-level Pokémon to use strength? Maybe make the rock visually different? This one is weird and vague.
 
+## Gyms
+* Tate and Liza – should be a doubles gym, not just Psychic
+* Norman's gym should use stat-boosting moves as well. Don't forget stat change eliminations. Higher Pokémon diversity with like, actual strategy involved
+* Ice gym should be weather-themed. Potentially see Castform get some use?
+
 ## Patches
 * 720 Pokémon
 * Physical/Special split
 * Unlimited TMs
+
+### Never gonna happens (but would LOVE)
+* Rotation battles
+* Trainer customization
+  * This could literally just be "select ur favorite color" at the beginning to pick outfit color
