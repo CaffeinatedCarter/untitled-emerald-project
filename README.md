@@ -9,6 +9,7 @@
 * Lower the encounter rate on water overall
 * Fix Feebas spawning (mirror ORAS!)
 * Every time you pick up an item, you get the Pokéball as an item. Different balls for different rarity of items (Nugget → Great Ball, etc)
+* Cut trees and rocks smashed should not respawn on exiting area. Maybe should be on a timer? Only in the overworld and not in caves?
 
 ## Area Ideas
 ### Expansions
@@ -24,6 +25,7 @@
 
 ### Little Things
 * Ledge to Fallarbor 
+* Cut trees in front of the Cutter's house in Rustboro
 
 ## Patches
 * 720 Pokémon
