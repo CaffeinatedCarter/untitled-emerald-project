@@ -12,6 +12,10 @@
 * Cut trees and rocks smashed should not respawn on exiting area. Maybe should be on a timer? Only in the overworld and not in caves?
 * Nuzlocke/Randomizer/Challenge mode.
 * Fly point to the Berry Master's house? Potentially flying to routes in general?
+* Change the money system a little. Implement Mystery Dungeon-esque banking and blacking out wipes your cash reserves. Have shops call from your "credit" so it doesn't affect much.
+* Normalize losing to trainers.
+* Challenging routes? Maybe implementing First → Second → Third choice to limit the number of Pokémon you bring?
+* Literally can we have a conclusion to the Winstrates.
 
 ## Area Ideas
 ### Expansions
