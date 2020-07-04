@@ -1,4 +1,4 @@
-# untitled-emerald-project
+# Untitled Emerald Project
 
 ## Wish List
 * Removing unnecessary dialogue (press A to HM, picking up items, Nurse Joy dialogue can happen over cutscene, etc.)
