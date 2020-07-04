@@ -16,6 +16,7 @@
 * Normalize losing to trainers.
 * Challenging routes? Maybe implementing First → Second → Third choice to limit the number of Pokémon you bring?
 * Literally can we have a conclusion to the Winstrates.
+* Combine Mach and Acro bikes after a certain point. Maybe halfway?
 
 ## Area Ideas
 ### Expansions
