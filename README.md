@@ -10,6 +10,7 @@
 * Fix Feebas spawning (mirror ORAS!)
 * Every time you pick up an item, you get the Pokéball as an item. Different balls for different rarity of items (Nugget → Great Ball, etc)
 * Cut trees and rocks smashed should not respawn on exiting area. Maybe should be on a timer? Only in the overworld and not in caves?
+* Nuzlocke/Randomizer/Challenge mode.
 
 ## Area Ideas
 ### Expansions
