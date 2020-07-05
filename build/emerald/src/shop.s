@@ -2428,16 +2428,14 @@ BuyMenuCheckForOverlapWithMenuBg:
 	.thumb_func
 Task_BuyMenu:
 	push	{r4, r5, r6, r7, lr}
-	mov	r7, r8
-	push	{r7}
 	lsl	r0, r0, #0x18
-	lsr	r6, r0, #0x18
-	lsl	r0, r6, #0x2
-	add	r0, r0, r6
+	lsr	r7, r0, #0x18
+	lsl	r0, r7, #0x2
+	add	r0, r0, r7
 	lsl	r0, r0, #0x3
-	ldr	r1, .L283
+	ldr	r1, .L285
 	add	r4, r0, r1
-	ldr	r0, .L283+0x4
+	ldr	r0, .L285+0x4
 	ldrb	r1, [r0, #0x7]
 	mov	r0, #0x80
 	and	r0, r0, r1
@@ -2447,26 +2445,26 @@ Task_BuyMenu:
 .LCB2779:
 	ldrb	r0, [r4, #0xe]
 	bl	ListMenu_ProcessInput
-	add	r5, r0, #0
+	add	r6, r0, #0
 	ldrb	r0, [r4, #0xe]
-	ldr	r7, .L283+0x8
-	ldr	r2, [r7]
-	ldr	r3, .L283+0xc
+	ldr	r5, .L285+0x8
+	ldr	r2, [r5]
+	ldr	r3, .L285+0xc
 	add	r1, r2, r3
 	sub	r3, r3, #0x2
 	add	r2, r2, r3
 	bl	ListMenuGetScrollAndRow
 	mov	r0, #0x2
 	neg	r0, r0
-	cmp	r5, r0
+	cmp	r6, r0
 	beq	.L268	@cond_branch
 	add	r0, r0, #0x1
-	cmp	r5, r0
+	cmp	r6, r0
 	bne	.L269	@cond_branch
 	b	.L265
-.L284:
+.L286:
 	.align	2, 0
-.L283:
+.L285:
 	.word	gTasks+0x8
 	.word	gPaletteFade
 	.word	gShopDataPtr
@@ -2474,30 +2472,30 @@ Task_BuyMenu:
 .L268:
 	mov	r0, #0x5
 	bl	PlaySE
-	add	r0, r6, #0
+	add	r0, r7, #0
 	bl	ExitBuyMenu
 	b	.L265
 .L269:
 	mov	r0, #0x5
 	bl	PlaySE
-	strh	r5, [r4, #0xa]
+	strh	r6, [r4, #0xa]
 	mov	r0, #0x2
 	bl	ClearWindowTilemap
 	bl	BuyMenuRemoveScrollIndicatorArrows
 	ldrb	r0, [r4, #0xe]
 	mov	r1, #0x2
 	bl	BuyMenuPrintCursor
-	ldr	r0, .L285
+	ldr	r0, .L287
 	ldrb	r0, [r0, #0xf]
 	cmp	r0, #0
 	bne	.L270	@cond_branch
-	lsl	r0, r5, #0x10
+	lsl	r0, r6, #0x10
 	lsr	r0, r0, #0x10
 	bl	ItemId_GetPrice
 	add	r4, r0, #0
 	mov	r0, #0x1
 	bl	GetPriceReduction
-	ldr	r1, [r7]
+	ldr	r1, [r5]
 	mov	r2, #0x80
 	lsl	r2, r2, #0x6
 	add	r1, r1, r2
@@ -2508,56 +2506,77 @@ Task_BuyMenu:
 	asr	r4, r4, r0
 	str	r4, [r1]
 	b	.L271
-.L286:
+.L288:
 	.align	2, 0
-.L285:
+.L287:
 	.word	gMartInfo
 .L270:
-	ldr	r1, [r7]
+	ldr	r1, [r5]
 	mov	r3, #0x80
 	lsl	r3, r3, #0x6
 	add	r1, r1, r3
-	ldr	r2, .L287
-	lsl	r0, r5, #0x5
+	ldr	r2, .L289
+	lsl	r0, r6, #0x5
 	add	r0, r0, r2
 	ldrh	r0, [r0, #0x14]
 	str	r0, [r1]
 .L271:
-	ldr	r0, .L287+0x4
+	ldr	r0, .L289+0x4
 	ldr	r0, [r0]
 	mov	r1, #0x92
 	lsl	r1, r1, #0x3
 	add	r0, r0, r1
-	ldr	r2, .L287+0x8
-	mov	r8, r2
-	ldr	r1, [r2]
-	mov	r7, #0x80
-	lsl	r7, r7, #0x6
-	add	r1, r1, r7
+	ldr	r1, .L289+0x8
+	ldr	r1, [r1]
+	mov	r2, #0x80
+	lsl	r2, r2, #0x6
+	add	r1, r1, r2
 	ldr	r1, [r1]
 	bl	IsEnoughMoney
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
 	bne	.L272	@cond_branch
-	ldr	r1, .L287+0xc
-	ldr	r2, .L287+0x10
-	b	.L281
-.L288:
+	ldr	r1, .L289+0xc
+	ldr	r2, .L289+0x10
+	b	.L283
+.L290:
 	.align	2, 0
-.L287:
+.L289:
 	.word	gDecorations
 	.word	gSaveBlock1Ptr
 	.word	gShopDataPtr
 	.word	gText_YouDontHaveMoney
 	.word	BuyMenuReturnToItemList
 .L272:
-	ldr	r4, .L289
-	ldrb	r0, [r4, #0xf]
-	cmp	r0, #0
+	lsl	r4, r6, #0x10
+	lsr	r5, r4, #0x10
+	add	r0, r5, #0
+	bl	ItemId_GetPocket
+	lsl	r0, r0, #0x18
+	lsr	r0, r0, #0x18
+	cmp	r0, #0x3
 	bne	.L274	@cond_branch
-	lsl	r0, r5, #0x10
-	lsr	r5, r0, #0x10
-	ldr	r1, .L289+0x4
+	add	r0, r5, #0
+	mov	r1, #0x1
+	bl	CheckBagHasItem
+	lsl	r0, r0, #0x18
+	cmp	r0, #0
+	beq	.L274	@cond_branch
+	ldr	r1, .L291
+	ldr	r2, .L291+0x4
+	b	.L283
+.L292:
+	.align	2, 0
+.L291:
+	.word	gText_YouAlreadyHaveThis
+	.word	BuyMenuReturnToItemList
+.L274:
+	ldr	r5, .L293
+	ldrb	r0, [r5, #0xf]
+	cmp	r0, #0
+	bne	.L276	@cond_branch
+	lsr	r5, r4, #0x10
+	ldr	r1, .L293+0x4
 	add	r0, r5, #0
 	bl	CopyItemName
 	add	r0, r5, #0
@@ -2565,88 +2584,89 @@ Task_BuyMenu:
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0x3
-	bne	.L275	@cond_branch
-	ldr	r4, .L289+0x8
+	bne	.L277	@cond_branch
+	ldr	r4, .L293+0x8
 	add	r0, r5, #0
 	bl	ItemIdToBattleMoveId
 	lsl	r0, r0, #0x10
 	lsr	r0, r0, #0x10
 	mov	r1, #0xd
 	mul	r1, r1, r0
-	ldr	r0, .L289+0xc
+	ldr	r0, .L293+0xc
 	add	r1, r1, r0
 	add	r0, r4, #0
 	bl	StringCopy
-	ldr	r1, .L289+0x10
-	b	.L282
-.L290:
+	ldr	r1, .L293+0x10
+	b	.L284
+.L294:
 	.align	2, 0
-.L289:
+.L293:
 	.word	gMartInfo
 	.word	gStringVar1
 	.word	gStringVar2
 	.word	gMoveNames
 	.word	gText_Var1CertainlyHowMany2
-.L275:
-	ldr	r1, .L291
-.L282:
-	ldr	r2, .L291+0x4
-.L281:
-	add	r0, r6, #0
+.L277:
+	ldr	r1, .L295
+.L284:
+	ldr	r2, .L295+0x4
+.L283:
+	add	r0, r7, #0
 	bl	BuyMenuDisplayMessage
 	b	.L265
-.L292:
+.L296:
 	.align	2, 0
-.L291:
+.L295:
 	.word	gText_Var1CertainlyHowMany
 	.word	Task_BuyHowManyDialogueInit
-.L274:
-	ldr	r0, .L293
-	lsl	r1, r5, #0x5
-	ldr	r2, .L293+0x4
+.L276:
+	ldr	r0, .L297
+	lsl	r1, r6, #0x5
+	ldr	r2, .L297+0x4
 	add	r1, r1, r2
 	bl	StringCopy
-	ldr	r0, .L293+0x8
-	mov	r3, r8
-	ldr	r1, [r3]
-	add	r1, r1, r7
+	ldr	r0, .L297+0x8
+	ldr	r1, .L297+0xc
+	ldr	r1, [r1]
+	mov	r3, #0x80
+	lsl	r3, r3, #0x6
+	add	r1, r1, r3
 	ldr	r1, [r1]
 	mov	r2, #0x0
 	mov	r3, #0x6
 	bl	ConvertIntToDecimalStringN
-	ldrb	r0, [r4, #0xf]
+	ldrb	r0, [r5, #0xf]
 	cmp	r0, #0x1
-	bne	.L278	@cond_branch
-	ldr	r0, .L293+0xc
-	ldr	r1, .L293+0x10
+	bne	.L280	@cond_branch
+	ldr	r0, .L297+0x10
+	ldr	r1, .L297+0x14
 	bl	StringExpandPlaceholders
-	b	.L279
-.L294:
+	b	.L281
+.L298:
 	.align	2, 0
-.L293:
+.L297:
 	.word	gStringVar1
 	.word	gDecorations+0x1
 	.word	gStringVar2
+	.word	gShopDataPtr
 	.word	gStringVar4
 	.word	gText_Var1IsItThatllBeVar2
-.L278:
-	ldr	r0, .L295
-	ldr	r1, .L295+0x4
+.L280:
+	ldr	r0, .L299
+	ldr	r1, .L299+0x4
 	bl	StringExpandPlaceholders
-.L279:
-	ldr	r1, .L295
-	ldr	r2, .L295+0x8
-	add	r0, r6, #0
+.L281:
+	ldr	r1, .L299
+	ldr	r2, .L299+0x8
+	add	r0, r7, #0
 	bl	BuyMenuDisplayMessage
 .L265:
-	pop	{r3}
-	mov	r8, r3
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L296:
+.L300:
 	.align	2, 0
-.L295:
+.L299:
 	.word	gStringVar4
 	.word	gText_YouWantedVar1ThatllBeVar2
 	.word	BuyMenuConfirmPurchase
@@ -2663,7 +2683,7 @@ Task_BuyHowManyDialogueInit:
 	lsl	r5, r6, #0x2
 	add	r5, r5, r6
 	lsl	r5, r5, #0x3
-	ldr	r0, .L300
+	ldr	r0, .L304
 	add	r5, r5, r0
 	ldrh	r0, [r5, #0xa]
 	bl	CountTotalItemQuantityInBag
@@ -2675,13 +2695,13 @@ Task_BuyHowManyDialogueInit:
 	mov	r2, #0x1
 	mov	r3, #0xd
 	bl	DrawStdFrameWithCustomTileAndPalette
-	ldr	r0, .L300+0x4
+	ldr	r0, .L304+0x4
 	add	r1, r4, #0
 	mov	r2, #0x1
 	mov	r3, #0x4
 	bl	ConvertIntToDecimalStringN
-	ldr	r4, .L300+0x8
-	ldr	r1, .L300+0xc
+	ldr	r4, .L304+0x8
+	ldr	r1, .L304+0xc
 	add	r0, r4, #0
 	bl	StringExpandPlaceholders
 	mov	r0, #0x0
@@ -2703,13 +2723,13 @@ Task_BuyHowManyDialogueInit:
 	bl	BuyMenuPrintItemQuantityAndPrice
 	mov	r0, #0x0
 	bl	ScheduleBgCopyTilemapToVram
-	ldr	r0, .L300+0x10
+	ldr	r0, .L304+0x10
 	ldr	r0, [r0]
 	mov	r1, #0x92
 	lsl	r1, r1, #0x3
 	add	r0, r0, r1
 	bl	GetMoney
-	ldr	r1, .L300+0x14
+	ldr	r1, .L304+0x14
 	ldr	r4, [r1]
 	mov	r2, #0x80
 	lsl	r2, r2, #0x6
@@ -2719,15 +2739,15 @@ Task_BuyHowManyDialogueInit:
 	lsl	r0, r0, #0x10
 	lsr	r1, r0, #0x10
 	cmp	r1, #0x63
-	bls	.L298	@cond_branch
-	ldr	r0, .L300+0x18
+	bls	.L302	@cond_branch
+	ldr	r0, .L304+0x18
 	add	r1, r4, r0
 	mov	r0, #0x63
 	strb	r0, [r1]
-	b	.L299
-.L301:
+	b	.L303
+.L305:
 	.align	2, 0
-.L300:
+.L304:
 	.word	gTasks+0x8
 	.word	gStringVar1
 	.word	gStringVar4
@@ -2735,25 +2755,25 @@ Task_BuyHowManyDialogueInit:
 	.word	gSaveBlock1Ptr
 	.word	gShopDataPtr
 	.word	0x200a
-.L298:
-	ldr	r2, .L302
+.L302:
+	ldr	r2, .L306
 	add	r0, r4, r2
 	strb	r1, [r0]
-.L299:
-	ldr	r0, .L302+0x4
+.L303:
+	ldr	r0, .L306+0x4
 	lsl	r1, r6, #0x2
 	add	r1, r1, r6
 	lsl	r1, r1, #0x3
 	add	r1, r1, r0
-	ldr	r0, .L302+0x8
+	ldr	r0, .L306+0x8
 	str	r0, [r1]
 	add	sp, sp, #0x8
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L303:
+.L307:
 	.align	2, 0
-.L302:
+.L306:
 	.word	0x200a
 	.word	gTasks
 	.word	Task_BuyHowManyDialogueHandleInput
@@ -2770,19 +2790,19 @@ Task_BuyHowManyDialogueHandleInput:
 	lsl	r0, r6, #0x2
 	add	r0, r0, r6
 	lsl	r0, r0, #0x3
-	ldr	r1, .L310
+	ldr	r1, .L314
 	add	r5, r0, r1
 	add	r0, r5, #0x2
-	ldr	r7, .L310+0x4
+	ldr	r7, .L314+0x4
 	ldr	r1, [r7]
-	ldr	r2, .L310+0x8
+	ldr	r2, .L314+0x8
 	add	r1, r1, r2
 	ldrb	r1, [r1]
 	bl	AdjustQuantityAccordingToDPadInput
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0x1
-	bne	.L305	@cond_branch
+	bne	.L309	@cond_branch
 	ldrh	r0, [r5, #0xa]
 	bl	ItemId_GetPrice
 	add	r4, r0, #0
@@ -2803,20 +2823,20 @@ Task_BuyHowManyDialogueHandleInput:
 	str	r0, [r1]
 	add	r0, r6, #0
 	bl	BuyMenuPrintItemQuantityAndPrice
-	b	.L306
-.L311:
+	b	.L310
+.L315:
 	.align	2, 0
-.L310:
+.L314:
 	.word	gTasks+0x8
 	.word	gShopDataPtr
 	.word	0x200a
-.L305:
-	ldr	r0, .L312
+.L309:
+	ldr	r0, .L316
 	ldrh	r1, [r0, #0x2e]
 	mov	r0, #0x1
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L307	@cond_branch
+	beq	.L311	@cond_branch
 	mov	r0, #0x5
 	bl	PlaySE
 	mov	r0, #0x4
@@ -2832,15 +2852,15 @@ Task_BuyHowManyDialogueHandleInput:
 	mov	r0, #0x1
 	bl	PutWindowTilemap
 	ldrh	r0, [r5, #0xa]
-	ldr	r1, .L312+0x4
+	ldr	r1, .L316+0x4
 	bl	CopyItemName
-	ldr	r0, .L312+0x8
+	ldr	r0, .L316+0x8
 	mov	r2, #0x2
 	ldrsh	r1, [r5, r2]
 	mov	r2, #0x0
 	mov	r3, #0x2
 	bl	ConvertIntToDecimalStringN
-	ldr	r0, .L312+0xc
+	ldr	r0, .L316+0xc
 	ldr	r1, [r7]
 	mov	r2, #0x80
 	lsl	r2, r2, #0x6
@@ -2849,25 +2869,25 @@ Task_BuyHowManyDialogueHandleInput:
 	mov	r2, #0x0
 	mov	r3, #0x6
 	bl	ConvertIntToDecimalStringN
-	ldr	r1, .L312+0x10
-	ldr	r2, .L312+0x14
+	ldr	r1, .L316+0x10
+	ldr	r2, .L316+0x14
 	add	r0, r6, #0
 	bl	BuyMenuDisplayMessage
-	b	.L306
-.L313:
+	b	.L310
+.L317:
 	.align	2, 0
-.L312:
+.L316:
 	.word	gMain
 	.word	gStringVar1
 	.word	gStringVar2
 	.word	gStringVar3
 	.word	gText_Var1AndYouWantedVar2
 	.word	BuyMenuConfirmPurchase
-.L307:
+.L311:
 	mov	r0, #0x2
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L306	@cond_branch
+	beq	.L310	@cond_branch
 	mov	r0, #0x5
 	bl	PlaySE
 	mov	r0, #0x4
@@ -2882,7 +2902,7 @@ Task_BuyHowManyDialogueHandleInput:
 	bl	ClearWindowTilemap
 	add	r0, r4, #0
 	bl	BuyMenuReturnToItemList
-.L306:
+.L310:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
@@ -2896,14 +2916,14 @@ BuyMenuConfirmPurchase:
 	add	sp, sp, #-0x10
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	ldr	r1, .L315
+	ldr	r1, .L319
 	mov	r2, #0x0
 	str	r2, [sp]
 	mov	r2, #0x1
 	str	r2, [sp, #0x4]
 	mov	r2, #0xd
 	str	r2, [sp, #0x8]
-	ldr	r2, .L315+0x4
+	ldr	r2, .L319+0x4
 	str	r2, [sp, #0xc]
 	mov	r2, #0x1
 	mov	r3, #0x0
@@ -2911,9 +2931,9 @@ BuyMenuConfirmPurchase:
 	add	sp, sp, #0x10
 	pop	{r0}
 	bx	r0
-.L316:
+.L320:
 	.align	2, 0
-.L315:
+.L319:
 	.word	sShopBuyMenuYesNoWindowTemplates
 	.word	sShopPurchaseYesNoFuncs
 .Lfe44:
@@ -2929,84 +2949,84 @@ BuyMenuTryMakePurchase:
 	lsl	r0, r5, #0x2
 	add	r0, r0, r5
 	lsl	r0, r0, #0x3
-	ldr	r1, .L328
+	ldr	r1, .L332
 	add	r4, r0, r1
 	mov	r0, #0x1
 	bl	PutWindowTilemap
-	ldr	r6, .L328+0x4
+	ldr	r6, .L332+0x4
 	ldrb	r0, [r6, #0xf]
 	cmp	r0, #0
-	bne	.L318	@cond_branch
+	bne	.L322	@cond_branch
 	ldrh	r0, [r4, #0xa]
 	ldrh	r1, [r4, #0x2]
 	bl	AddBagItem
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0x1
-	bne	.L319	@cond_branch
-	ldr	r1, .L328+0x8
-	ldr	r2, .L328+0xc
+	bne	.L323	@cond_branch
+	ldr	r1, .L332+0x8
+	ldr	r2, .L332+0xc
 	add	r0, r5, #0
 	bl	BuyMenuDisplayMessage
 	add	r0, r5, #0
 	bl	RecordItemPurchase
-	b	.L321
-.L329:
+	b	.L325
+.L333:
 	.align	2, 0
-.L328:
+.L332:
 	.word	gTasks+0x8
 	.word	gMartInfo
 	.word	gText_HereYouGoThankYou
 	.word	BuyMenuSubtractMoney
-.L319:
-	ldr	r1, .L330
-	ldr	r2, .L330+0x4
-	b	.L326
-.L331:
+.L323:
+	ldr	r1, .L334
+	ldr	r2, .L334+0x4
+	b	.L330
+.L335:
 	.align	2, 0
-.L330:
+.L334:
 	.word	gText_NoMoreRoomForThis
 	.word	BuyMenuReturnToItemList
-.L318:
+.L322:
 	ldrb	r0, [r4, #0xa]
 	bl	DecorationAdd
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
-	beq	.L322	@cond_branch
+	beq	.L326	@cond_branch
 	ldrb	r0, [r6, #0xf]
 	cmp	r0, #0x1
-	bne	.L323	@cond_branch
-	ldr	r1, .L332
-	b	.L327
-.L333:
-	.align	2, 0
-.L332:
-	.word	gText_ThankYouIllSendItHome
-.L323:
-	ldr	r1, .L334
-.L327:
-	ldr	r2, .L334+0x4
-.L326:
-	add	r0, r5, #0
-	bl	BuyMenuDisplayMessage
-	b	.L321
-.L335:
-	.align	2, 0
-.L334:
-	.word	gText_ThanksIllSendItHome
-	.word	BuyMenuSubtractMoney
-.L322:
+	bne	.L327	@cond_branch
 	ldr	r1, .L336
-	ldr	r2, .L336+0x4
-	add	r0, r7, #0
-	bl	BuyMenuDisplayMessage
-.L321:
-	pop	{r4, r5, r6, r7}
-	pop	{r0}
-	bx	r0
+	b	.L331
 .L337:
 	.align	2, 0
 .L336:
+	.word	gText_ThankYouIllSendItHome
+.L327:
+	ldr	r1, .L338
+.L331:
+	ldr	r2, .L338+0x4
+.L330:
+	add	r0, r5, #0
+	bl	BuyMenuDisplayMessage
+	b	.L325
+.L339:
+	.align	2, 0
+.L338:
+	.word	gText_ThanksIllSendItHome
+	.word	BuyMenuSubtractMoney
+.L326:
+	ldr	r1, .L340
+	ldr	r2, .L340+0x4
+	add	r0, r7, #0
+	bl	BuyMenuDisplayMessage
+.L325:
+	pop	{r4, r5, r6, r7}
+	pop	{r0}
+	bx	r0
+.L341:
+	.align	2, 0
+.L340:
 	.word	gText_SpaceForVar1Full
 	.word	BuyMenuReturnToItemList
 .Lfe45:
@@ -3020,12 +3040,12 @@ BuyMenuSubtractMoney:
 	lsr	r6, r0, #0x18
 	mov	r0, #0x26
 	bl	IncrementGameStat
-	ldr	r5, .L342
+	ldr	r5, .L346
 	ldr	r0, [r5]
 	mov	r4, #0x92
 	lsl	r4, r4, #0x3
 	add	r0, r0, r4
-	ldr	r1, .L342+0x4
+	ldr	r1, .L346+0x4
 	ldr	r1, [r1]
 	mov	r2, #0x80
 	lsl	r2, r2, #0x6
@@ -3041,40 +3061,40 @@ BuyMenuSubtractMoney:
 	mov	r0, #0x0
 	mov	r2, #0x0
 	bl	PrintMoneyAmountInMoneyBox
-	ldr	r0, .L342+0x8
+	ldr	r0, .L346+0x8
 	ldrb	r0, [r0, #0xf]
 	cmp	r0, #0
-	bne	.L339	@cond_branch
-	ldr	r0, .L342+0xc
+	bne	.L343	@cond_branch
+	ldr	r0, .L346+0xc
 	lsl	r1, r6, #0x2
 	add	r1, r1, r6
 	lsl	r1, r1, #0x3
 	add	r1, r1, r0
-	ldr	r0, .L342+0x10
-	b	.L341
-.L343:
+	ldr	r0, .L346+0x10
+	b	.L345
+.L347:
 	.align	2, 0
-.L342:
+.L346:
 	.word	gSaveBlock1Ptr
 	.word	gShopDataPtr
 	.word	gMartInfo
 	.word	gTasks
 	.word	Task_ReturnToItemListAfterItemPurchase
-.L339:
-	ldr	r0, .L344
+.L343:
+	ldr	r0, .L348
 	lsl	r1, r6, #0x2
 	add	r1, r1, r6
 	lsl	r1, r1, #0x3
 	add	r1, r1, r0
-	ldr	r0, .L344+0x4
-.L341:
+	ldr	r0, .L348+0x4
+.L345:
 	str	r0, [r1]
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L345:
+.L349:
 	.align	2, 0
-.L344:
+.L348:
 	.word	gTasks
 	.word	Task_ReturnToItemListAfterDecorationPurchase
 .Lfe46:
@@ -3089,47 +3109,47 @@ Task_ReturnToItemListAfterItemPurchase:
 	lsl	r0, r4, #0x2
 	add	r0, r0, r4
 	lsl	r0, r0, #0x3
-	ldr	r1, .L350
+	ldr	r1, .L354
 	add	r5, r0, r1
-	ldr	r0, .L350+0x4
+	ldr	r0, .L354+0x4
 	ldrh	r1, [r0, #0x2e]
 	mov	r0, #0x3
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L347	@cond_branch
+	beq	.L351	@cond_branch
 	mov	r0, #0x5
 	bl	PlaySE
 	mov	r1, #0xa
 	ldrsh	r0, [r5, r1]
 	cmp	r0, #0x4
-	bne	.L348	@cond_branch
+	bne	.L352	@cond_branch
 	mov	r1, #0x2
 	ldrsh	r0, [r5, r1]
 	cmp	r0, #0x9
-	ble	.L348	@cond_branch
+	ble	.L352	@cond_branch
 	mov	r0, #0xc
 	mov	r1, #0x1
 	bl	AddBagItem
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0x1
-	bne	.L348	@cond_branch
-	ldr	r1, .L350+0x8
-	ldr	r2, .L350+0xc
+	bne	.L352	@cond_branch
+	ldr	r1, .L354+0x8
+	ldr	r2, .L354+0xc
 	add	r0, r4, #0
 	bl	BuyMenuDisplayMessage
-	b	.L347
-.L351:
+	b	.L351
+.L355:
 	.align	2, 0
-.L350:
+.L354:
 	.word	gTasks+0x8
 	.word	gMain
 	.word	gText_ThrowInPremierBall
 	.word	BuyMenuReturnToItemList
-.L348:
+.L352:
 	add	r0, r4, #0
 	bl	BuyMenuReturnToItemList
-.L347:
+.L351:
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
@@ -3142,23 +3162,23 @@ Task_ReturnToItemListAfterDecorationPurchase:
 	push	{r4, lr}
 	lsl	r0, r0, #0x18
 	lsr	r4, r0, #0x18
-	ldr	r0, .L354
+	ldr	r0, .L358
 	ldrh	r1, [r0, #0x2e]
 	mov	r0, #0x3
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L353	@cond_branch
+	beq	.L357	@cond_branch
 	mov	r0, #0x5
 	bl	PlaySE
 	add	r0, r4, #0
 	bl	BuyMenuReturnToItemList
-.L353:
+.L357:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L355:
+.L359:
 	.align	2, 0
-.L354:
+.L358:
 	.word	gMain
 .Lfe48:
 	.size	 Task_ReturnToItemListAfterDecorationPurchase,.Lfe48-Task_ReturnToItemListAfterDecorationPurchase
@@ -3172,7 +3192,7 @@ BuyMenuReturnToItemList:
 	lsl	r4, r0, #0x2
 	add	r4, r4, r0
 	lsl	r4, r4, #0x3
-	ldr	r5, .L357
+	ldr	r5, .L361
 	add	r6, r4, r5
 	mov	r0, #0x5
 	mov	r1, #0x0
@@ -3189,14 +3209,14 @@ BuyMenuReturnToItemList:
 	bl	BuyMenuAddScrollIndicatorArrows
 	sub	r5, r5, #0x8
 	add	r4, r4, r5
-	ldr	r0, .L357+0x4
+	ldr	r0, .L361+0x4
 	str	r0, [r4]
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L358:
+.L362:
 	.align	2, 0
-.L357:
+.L361:
 	.word	gTasks+0x8
 	.word	Task_BuyMenu
 .Lfe49:
@@ -3212,12 +3232,12 @@ BuyMenuPrintItemQuantityAndPrice:
 	lsl	r4, r0, #0x2
 	add	r4, r4, r0
 	lsl	r4, r4, #0x3
-	ldr	r0, .L360
+	ldr	r0, .L364
 	add	r4, r4, r0
 	mov	r0, #0x4
 	mov	r1, #0x11
 	bl	FillWindowPixelBuffer
-	ldr	r0, .L360+0x4
+	ldr	r0, .L364+0x4
 	ldr	r0, [r0]
 	mov	r1, #0x80
 	lsl	r1, r1, #0x6
@@ -3229,14 +3249,14 @@ BuyMenuPrintItemQuantityAndPrice:
 	mov	r1, #0x26
 	mov	r2, #0x1
 	bl	PrintMoneyAmount
-	ldr	r0, .L360+0x8
+	ldr	r0, .L364+0x8
 	mov	r2, #0x2
 	ldrsh	r1, [r4, r2]
 	mov	r2, #0x2
 	mov	r3, #0x2
 	bl	ConvertIntToDecimalStringN
-	ldr	r4, .L360+0xc
-	ldr	r1, .L360+0x10
+	ldr	r4, .L364+0xc
+	ldr	r1, .L364+0x10
 	add	r0, r4, #0
 	bl	StringExpandPlaceholders
 	mov	r0, #0x0
@@ -3251,9 +3271,9 @@ BuyMenuPrintItemQuantityAndPrice:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L361:
+.L365:
 	.align	2, 0
-.L360:
+.L364:
 	.word	gTasks+0x8
 	.word	gShopDataPtr
 	.word	gStringVar1
@@ -3270,8 +3290,8 @@ ExitBuyMenu:
 	add	r4, r0, #0
 	lsl	r4, r4, #0x18
 	lsr	r4, r4, #0x18
-	ldr	r1, .L363
-	ldr	r0, .L363+0x4
+	ldr	r1, .L367
+	ldr	r0, .L367+0x4
 	str	r0, [r1]
 	mov	r0, #0x1
 	neg	r0, r0
@@ -3280,20 +3300,20 @@ ExitBuyMenu:
 	mov	r2, #0x0
 	mov	r3, #0x10
 	bl	BeginNormalPaletteFade
-	ldr	r1, .L363+0x8
+	ldr	r1, .L367+0x8
 	lsl	r0, r4, #0x2
 	add	r0, r0, r4
 	lsl	r0, r0, #0x3
 	add	r0, r0, r1
-	ldr	r1, .L363+0xc
+	ldr	r1, .L367+0xc
 	str	r1, [r0]
 	add	sp, sp, #0x4
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L364:
+.L368:
 	.align	2, 0
-.L363:
+.L367:
 	.word	gFieldCallback
 	.word	MapPostLoadHook_ReturnToShopMenu
 	.word	gTasks
@@ -3307,25 +3327,25 @@ Task_ExitBuyMenu:
 	push	{r4, lr}
 	lsl	r0, r0, #0x18
 	lsr	r4, r0, #0x18
-	ldr	r0, .L367
+	ldr	r0, .L371
 	ldrb	r1, [r0, #0x7]
 	mov	r0, #0x80
 	and	r0, r0, r1
 	cmp	r0, #0
-	bne	.L366	@cond_branch
+	bne	.L370	@cond_branch
 	bl	RemoveMoneyLabelObject
 	bl	BuyMenuFreeMemory
-	ldr	r0, .L367+0x4
+	ldr	r0, .L371+0x4
 	bl	SetMainCallback2
 	add	r0, r4, #0
 	bl	DestroyTask
-.L366:
+.L370:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L368:
+.L372:
 	.align	2, 0
-.L367:
+.L371:
 	.word	gPaletteFade
 	.word	CB2_ReturnToField
 .Lfe52:
@@ -3335,18 +3355,18 @@ Task_ExitBuyMenu:
 	.thumb_func
 ClearItemPurchases:
 	push	{lr}
-	ldr	r0, .L370
+	ldr	r0, .L374
 	mov	r1, #0x0
 	strb	r1, [r0]
-	ldr	r0, .L370+0x4
+	ldr	r0, .L374+0x4
 	mov	r1, #0x0
 	mov	r2, #0xc
 	bl	memset
 	pop	{r0}
 	bx	r0
-.L371:
+.L375:
 	.align	2, 0
-.L370:
+.L374:
 	.word	gMartPurchaseHistoryId
 	.word	gMartPurchaseHistory
 .Lfe53:
@@ -3361,51 +3381,51 @@ RecordItemPurchase:
 	lsl	r1, r0, #0x2
 	add	r1, r1, r0
 	lsl	r1, r1, #0x3
-	ldr	r0, .L382
+	ldr	r0, .L386
 	add	r4, r1, r0
 	mov	r3, #0x0
-	ldr	r5, .L382+0x4
+	ldr	r5, .L386+0x4
 	add	r6, r5, #0
-.L376:
+.L380:
 	lsl	r0, r3, #0x2
 	add	r2, r0, r6
 	ldrh	r1, [r2]
 	mov	r7, #0xa
 	ldrsh	r0, [r4, r7]
 	cmp	r1, r0
-	bne	.L375	@cond_branch
+	bne	.L379	@cond_branch
 	ldrh	r0, [r2, #0x2]
 	cmp	r0, #0
-	beq	.L375	@cond_branch
+	beq	.L379	@cond_branch
 	add	r1, r0, #0
 	mov	r3, #0x2
 	ldrsh	r0, [r4, r3]
 	add	r0, r1, r0
 	cmp	r0, #0xff
-	ble	.L378	@cond_branch
+	ble	.L382	@cond_branch
 	mov	r0, #0xff
 	strh	r0, [r2, #0x2]
-	b	.L372
-.L383:
+	b	.L376
+.L387:
 	.align	2, 0
-.L382:
+.L386:
 	.word	gTasks+0x8
 	.word	gMartPurchaseHistory
-.L378:
+.L382:
 	ldrh	r0, [r4, #0x2]
 	add	r0, r1, r0
 	strh	r0, [r2, #0x2]
-	b	.L372
-.L375:
+	b	.L376
+.L379:
 	add	r0, r3, #0x1
 	lsl	r0, r0, #0x10
 	lsr	r3, r0, #0x10
 	cmp	r3, #0x2
-	bls	.L376	@cond_branch
-	ldr	r2, .L384
+	bls	.L380	@cond_branch
+	ldr	r2, .L388
 	ldrb	r0, [r2]
 	cmp	r0, #0x2
-	bhi	.L372	@cond_branch
+	bhi	.L376	@cond_branch
 	lsl	r0, r0, #0x2
 	add	r0, r0, r5
 	ldrh	r1, [r4, #0xa]
@@ -3418,13 +3438,13 @@ RecordItemPurchase:
 	ldrb	r0, [r2]
 	add	r0, r0, #0x1
 	strb	r0, [r2]
-.L372:
+.L376:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L385:
+.L389:
 	.align	2, 0
-.L384:
+.L388:
 	.word	gMartPurchaseHistoryId
 .Lfe54:
 	.size	 RecordItemPurchase,.Lfe54-RecordItemPurchase
@@ -3440,14 +3460,14 @@ CreatePokemartMenu:
 	add	r0, r4, #0
 	bl	SetShopItemsForSale
 	bl	ClearItemPurchases
-	ldr	r0, .L387
+	ldr	r0, .L391
 	bl	SetShopMenuCallback
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L388:
+.L392:
 	.align	2, 0
-.L387:
+.L391:
 	.word	EnableBothScriptContexts
 .Lfe55:
 	.size	 CreatePokemartMenu,.Lfe55-CreatePokemartMenu
@@ -3462,14 +3482,14 @@ CreateDecorationShop1Menu:
 	bl	CreateShopMenu
 	add	r0, r4, #0
 	bl	SetShopItemsForSale
-	ldr	r0, .L390
+	ldr	r0, .L394
 	bl	SetShopMenuCallback
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L391:
+.L395:
 	.align	2, 0
-.L390:
+.L394:
 	.word	EnableBothScriptContexts
 .Lfe56:
 	.size	 CreateDecorationShop1Menu,.Lfe56-CreateDecorationShop1Menu
@@ -3484,14 +3504,14 @@ CreateDecorationShop2Menu:
 	bl	CreateShopMenu
 	add	r0, r4, #0
 	bl	SetShopItemsForSale
-	ldr	r0, .L393
+	ldr	r0, .L397
 	bl	SetShopMenuCallback
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L394:
+.L398:
 	.align	2, 0
-.L393:
+.L397:
 	.word	EnableBothScriptContexts
 .Lfe57:
 	.size	 CreateDecorationShop2Menu,.Lfe57-CreateDecorationShop2Menu

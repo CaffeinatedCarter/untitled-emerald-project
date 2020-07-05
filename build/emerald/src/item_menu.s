@@ -6302,37 +6302,43 @@ UseRegisteredKeyItemOnField:
 	.type	 Task_ItemContext_Sell,function
 	.thumb_func
 Task_ItemContext_Sell:
-	push	{r4, r5, r6, r7, lr}
+	push	{r4, r5, r6, lr}
 	lsl	r0, r0, #0x18
 	lsr	r5, r0, #0x18
-	add	r7, r5, #0
 	lsl	r0, r5, #0x2
 	add	r0, r0, r5
 	lsl	r0, r0, #0x3
-	ldr	r1, .L735
-	add	r4, r0, r1
-	ldr	r6, .L735+0x4
-	ldrh	r0, [r6]
+	ldr	r1, .L736
+	add	r6, r0, r1
+	ldr	r4, .L736+0x4
+	ldrh	r0, [r4]
 	bl	ItemId_GetPrice
 	lsl	r0, r0, #0x10
 	cmp	r0, #0
+	beq	.L732	@cond_branch
+	ldrh	r0, [r4]
+	bl	ItemId_GetPocket
+	lsl	r0, r0, #0x18
+	lsr	r0, r0, #0x18
+	cmp	r0, #0x3
 	bne	.L731	@cond_branch
-	ldrh	r0, [r6]
-	ldr	r1, .L735+0x8
+.L732:
+	ldrh	r0, [r4]
+	ldr	r1, .L736+0x8
 	bl	CopyItemName
-	ldr	r4, .L735+0xc
-	ldr	r1, .L735+0x10
+	ldr	r4, .L736+0xc
+	ldr	r1, .L736+0x10
 	add	r0, r4, #0
 	bl	StringExpandPlaceholders
-	ldr	r3, .L735+0x14
+	ldr	r3, .L736+0x14
 	add	r0, r5, #0
 	mov	r1, #0x1
 	add	r2, r4, #0
 	bl	DisplayItemMessage
-	b	.L732
-.L736:
+	b	.L733
+.L737:
 	.align	2, 0
-.L735:
+.L736:
 	.word	gTasks+0x8
 	.word	gSpecialVar_ItemId
 	.word	gStringVar2
@@ -6341,35 +6347,35 @@ Task_ItemContext_Sell:
 	.word	BagMenu_InitListsMenu
 .L731:
 	mov	r0, #0x1
-	strh	r0, [r4, #0x10]
+	strh	r0, [r6, #0x10]
 	mov	r1, #0x4
-	ldrsh	r0, [r4, r1]
+	ldrsh	r0, [r6, r1]
 	cmp	r0, #0x1
-	bne	.L733	@cond_branch
+	bne	.L734	@cond_branch
 	bl	DisplayCurrentMoneyWindow
 	add	r0, r5, #0
 	bl	DisplaySellItemPriceAndConfirm
-	b	.L732
-.L733:
-	ldrh	r0, [r6]
-	ldr	r1, .L737
+	b	.L733
+.L734:
+	ldrh	r0, [r4]
+	ldr	r1, .L738
 	bl	CopyItemName
-	ldr	r4, .L737+0x4
-	ldr	r1, .L737+0x8
+	ldr	r4, .L738+0x4
+	ldr	r1, .L738+0x8
 	add	r0, r4, #0
 	bl	StringExpandPlaceholders
-	ldr	r3, .L737+0xc
-	add	r0, r7, #0
+	ldr	r3, .L738+0xc
+	add	r0, r5, #0
 	mov	r1, #0x1
 	add	r2, r4, #0
 	bl	DisplayItemMessage
-.L732:
-	pop	{r4, r5, r6, r7}
+.L733:
+	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L738:
+.L739:
 	.align	2, 0
-.L737:
+.L738:
 	.word	gStringVar2
 	.word	gStringVar4
 	.word	gText_HowManyToSell
@@ -6388,10 +6394,10 @@ DisplaySellItemPriceAndConfirm:
 	lsl	r4, r5, #0x2
 	add	r4, r4, r5
 	lsl	r4, r4, #0x3
-	ldr	r0, .L740
+	ldr	r0, .L741
 	add	r4, r4, r0
-	ldr	r6, .L740+0x4
-	ldr	r0, .L740+0x8
+	ldr	r6, .L741+0x4
+	ldr	r0, .L741+0x8
 	ldrh	r0, [r0]
 	bl	ItemId_GetPrice
 	lsl	r0, r0, #0x10
@@ -6403,11 +6409,11 @@ DisplaySellItemPriceAndConfirm:
 	mov	r2, #0x0
 	mov	r3, #0x6
 	bl	ConvertIntToDecimalStringN
-	ldr	r4, .L740+0xc
-	ldr	r1, .L740+0x10
+	ldr	r4, .L741+0xc
+	ldr	r1, .L741+0x10
 	add	r0, r4, #0
 	bl	StringExpandPlaceholders
-	ldr	r3, .L740+0x14
+	ldr	r3, .L741+0x14
 	add	r0, r5, #0
 	mov	r1, #0x1
 	add	r2, r4, #0
@@ -6415,9 +6421,9 @@ DisplaySellItemPriceAndConfirm:
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L741:
+.L742:
 	.align	2, 0
-.L740:
+.L741:
 	.word	gTasks+0x8
 	.word	gStringVar1
 	.word	gSpecialVar_ItemId
@@ -6434,14 +6440,14 @@ sub_81AD6E4:
 	push	{lr}
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	ldr	r2, .L743
+	ldr	r2, .L744
 	mov	r1, #0x6
 	bl	BagMenu_YesNo
 	pop	{r0}
 	bx	r0
-.L744:
+.L745:
 	.align	2, 0
-.L743:
+.L744:
 	.word	sYesNoSellItemFunctions
 .Lfe87:
 	.size	 sub_81AD6E4,.Lfe87-sub_81AD6E4
@@ -6457,7 +6463,7 @@ BagMenu_CancelSell:
 	lsl	r4, r5, #0x2
 	add	r4, r4, r5
 	lsl	r4, r4, #0x3
-	ldr	r0, .L746
+	ldr	r0, .L747
 	add	r4, r4, r0
 	bl	bag_menu_remove_money_window
 	mov	r0, #0x4
@@ -6470,9 +6476,9 @@ BagMenu_CancelSell:
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L747:
+.L748:
 	.align	2, 0
-.L746:
+.L747:
 	.word	gTasks+0x8
 .Lfe88:
 	.size	 BagMenu_CancelSell,.Lfe88-BagMenu_CancelSell
@@ -6489,7 +6495,7 @@ sub_81AD730:
 	lsl	r4, r0, #0x2
 	add	r4, r4, r0
 	lsl	r4, r4, #0x3
-	ldr	r6, .L749
+	ldr	r6, .L750
 	add	r0, r4, r6
 	mov	r8, r0
 	mov	r0, #0x8
@@ -6497,7 +6503,7 @@ sub_81AD730:
 	add	r5, r0, #0
 	lsl	r5, r5, #0x18
 	lsr	r5, r5, #0x18
-	ldr	r0, .L749+0x4
+	ldr	r0, .L750+0x4
 	ldrh	r0, [r0]
 	bl	ItemId_GetPrice
 	lsl	r0, r0, #0x10
@@ -6513,16 +6519,16 @@ sub_81AD730:
 	bl	DisplayCurrentMoneyWindow
 	sub	r6, r6, #0x8
 	add	r4, r4, r6
-	ldr	r0, .L749+0x8
+	ldr	r0, .L750+0x8
 	str	r0, [r4]
 	pop	{r3}
 	mov	r8, r3
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L750:
+.L751:
 	.align	2, 0
-.L749:
+.L750:
 	.word	gTasks+0x8
 	.word	gSpecialVar_ItemId
 	.word	Task_BuyHowManyDialogueHandleInput
@@ -6540,7 +6546,7 @@ Task_BuyHowManyDialogueHandleInput:
 	lsl	r0, r4, #0x2
 	add	r0, r0, r4
 	lsl	r0, r0, #0x3
-	ldr	r1, .L757
+	ldr	r1, .L758
 	add	r6, r0, r1
 	add	r0, r6, #0
 	add	r0, r0, #0x10
@@ -6549,15 +6555,15 @@ Task_BuyHowManyDialogueHandleInput:
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0x1
-	bne	.L752	@cond_branch
-	ldr	r0, .L757+0x4
+	bne	.L753	@cond_branch
+	ldr	r0, .L758+0x4
 	ldr	r0, [r0]
-	ldr	r1, .L757+0x8
+	ldr	r1, .L758+0x8
 	add	r0, r0, r1
 	ldrb	r4, [r0]
 	mov	r2, #0x10
 	ldrsh	r5, [r6, r2]
-	ldr	r0, .L757+0xc
+	ldr	r0, .L758+0xc
 	ldrh	r0, [r0]
 	bl	ItemId_GetPrice
 	lsl	r0, r0, #0x10
@@ -6569,37 +6575,37 @@ Task_BuyHowManyDialogueHandleInput:
 	add	r0, r4, #0
 	add	r1, r5, #0
 	bl	PrintItemSoldAmount
-	b	.L753
-.L758:
+	b	.L754
+.L759:
 	.align	2, 0
-.L757:
+.L758:
 	.word	gTasks+0x8
 	.word	gBagMenu
 	.word	0x818
 	.word	gSpecialVar_ItemId
-.L752:
-	ldr	r0, .L759
+.L753:
+	ldr	r0, .L760
 	ldrh	r1, [r0, #0x2e]
 	mov	r0, #0x1
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L754	@cond_branch
+	beq	.L755	@cond_branch
 	mov	r0, #0x5
 	bl	PlaySE
 	mov	r0, #0x8
 	bl	BagMenu_RemoveWindow
 	add	r0, r4, #0
 	bl	DisplaySellItemPriceAndConfirm
-	b	.L753
-.L760:
+	b	.L754
+.L761:
 	.align	2, 0
-.L759:
+.L760:
 	.word	gMain
-.L754:
+.L755:
 	mov	r0, #0x2
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L753	@cond_branch
+	beq	.L754	@cond_branch
 	mov	r0, #0x5
 	bl	PlaySE
 	ldrb	r0, [r6]
@@ -6612,7 +6618,7 @@ Task_BuyHowManyDialogueHandleInput:
 	bl	bag_menu_RemoveBagItem_message_window
 	add	r0, r5, #0
 	bl	set_callback3_to_bag
-.L753:
+.L754:
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
@@ -6632,13 +6638,13 @@ BagMenu_ConfirmSell:
 	lsl	r4, r5, #0x2
 	add	r4, r4, r5
 	lsl	r4, r4, #0x3
-	ldr	r0, .L762
+	ldr	r0, .L763
 	add	r4, r4, r0
-	ldr	r6, .L762+0x4
+	ldr	r6, .L763+0x4
 	ldrh	r0, [r6]
-	ldr	r1, .L762+0x8
+	ldr	r1, .L763+0x8
 	bl	CopyItemName
-	ldr	r0, .L762+0xc
+	ldr	r0, .L763+0xc
 	mov	r8, r0
 	ldrh	r0, [r6]
 	bl	ItemId_GetPrice
@@ -6651,11 +6657,11 @@ BagMenu_ConfirmSell:
 	mov	r2, #0x0
 	mov	r3, #0x6
 	bl	ConvertIntToDecimalStringN
-	ldr	r4, .L762+0x10
-	ldr	r1, .L762+0x14
+	ldr	r4, .L763+0x10
+	ldr	r1, .L763+0x14
 	add	r0, r4, #0
 	bl	StringExpandPlaceholders
-	ldr	r3, .L762+0x18
+	ldr	r3, .L763+0x18
 	add	r0, r5, #0
 	mov	r1, #0x1
 	add	r2, r4, #0
@@ -6665,9 +6671,9 @@ BagMenu_ConfirmSell:
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L763:
+.L764:
 	.align	2, 0
-.L762:
+.L763:
 	.word	gTasks+0x8
 	.word	gSpecialVar_ItemId
 	.word	gStringVar2
@@ -6692,10 +6698,10 @@ sub_81AD8C8:
 	lsl	r6, r0, #0x2
 	add	r6, r6, r0
 	lsl	r6, r6, #0x3
-	ldr	r0, .L765
+	ldr	r0, .L766
 	add	r0, r0, r6
 	mov	sl, r0
-	ldr	r7, .L765+0x4
+	ldr	r7, .L766+0x4
 	ldrb	r5, [r7, #0x5]
 	lsl	r5, r5, #0x1
 	mov	r1, #0x12
@@ -6707,13 +6713,13 @@ sub_81AD8C8:
 	add	r5, r5, r0
 	mov	r0, #0x5f
 	bl	PlaySE
-	ldr	r2, .L765+0x8
+	ldr	r2, .L766+0x8
 	mov	r8, r2
 	ldrh	r0, [r2]
 	mov	r3, sl
 	ldrh	r1, [r3, #0x10]
 	bl	RemoveBagItem
-	ldr	r0, .L765+0xc
+	ldr	r0, .L766+0xc
 	ldr	r4, [r0]
 	mov	r1, #0x92
 	lsl	r1, r1, #0x3
@@ -6740,7 +6746,7 @@ sub_81AD8C8:
 	bl	SetInitialScrollAndCursorPositions
 	ldrb	r0, [r7, #0x5]
 	bl	LoadBagItemListBuffers
-	ldr	r0, .L765+0x10
+	ldr	r0, .L766+0x10
 	mov	r2, r9
 	ldrh	r1, [r2]
 	ldrh	r2, [r5]
@@ -6751,12 +6757,12 @@ sub_81AD8C8:
 	strh	r0, [r3]
 	mov	r1, #0x2
 	bl	BagMenu_PrintCursor_
-	ldr	r0, .L765+0x14
+	ldr	r0, .L766+0x14
 	ldr	r0, [r0]
-	ldr	r1, .L765+0x18
+	ldr	r1, .L766+0x18
 	add	r0, r0, r1
 	ldrb	r4, [r0]
-	ldr	r2, .L765+0xc
+	ldr	r2, .L766+0xc
 	ldr	r0, [r2]
 	mov	r3, #0x92
 	lsl	r3, r3, #0x3
@@ -6766,10 +6772,10 @@ sub_81AD8C8:
 	add	r0, r4, #0
 	mov	r2, #0x0
 	bl	PrintMoneyAmountInMoneyBox
-	ldr	r0, .L765
+	ldr	r0, .L766
 	sub	r0, r0, #0x8
 	add	r6, r6, r0
-	ldr	r0, .L765+0x1c
+	ldr	r0, .L766+0x1c
 	str	r0, [r6]
 	pop	{r3, r4, r5}
 	mov	r8, r3
@@ -6778,9 +6784,9 @@ sub_81AD8C8:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L766:
+.L767:
 	.align	2, 0
-.L765:
+.L766:
 	.word	gTasks+0x8
 	.word	gBagPositionStruct
 	.word	gSpecialVar_ItemId
@@ -6799,24 +6805,24 @@ sub_81AD9C0:
 	push	{r4, lr}
 	lsl	r0, r0, #0x18
 	lsr	r4, r0, #0x18
-	ldr	r0, .L769
+	ldr	r0, .L770
 	ldrh	r1, [r0, #0x2e]
 	mov	r0, #0x3
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L768	@cond_branch
+	beq	.L769	@cond_branch
 	mov	r0, #0x5
 	bl	PlaySE
 	bl	bag_menu_remove_money_window
 	add	r0, r4, #0
 	bl	BagMenu_InitListsMenu
-.L768:
+.L769:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L770:
+.L771:
 	.align	2, 0
-.L769:
+.L770:
 	.word	gMain
 .Lfe93:
 	.size	 sub_81AD9C0,.Lfe93-sub_81AD9C0
@@ -6832,28 +6838,28 @@ Task_ItemContext_Deposit:
 	lsl	r0, r2, #0x2
 	add	r0, r0, r2
 	lsl	r5, r0, #0x3
-	ldr	r6, .L774
+	ldr	r6, .L775
 	add	r1, r5, r6
 	mov	r0, #0x1
 	strh	r0, [r1, #0x10]
 	mov	r3, #0x4
 	ldrsh	r0, [r1, r3]
 	cmp	r0, #0x1
-	bne	.L772	@cond_branch
+	bne	.L773	@cond_branch
 	add	r0, r2, #0
 	bl	sub_81ADB14
-	b	.L773
-.L775:
+	b	.L774
+.L776:
 	.align	2, 0
-.L774:
+.L775:
 	.word	gTasks+0x8
-.L772:
-	ldr	r0, .L776
+.L773:
+	ldr	r0, .L777
 	ldrh	r0, [r0]
-	ldr	r1, .L776+0x4
+	ldr	r1, .L777+0x4
 	bl	CopyItemName
-	ldr	r4, .L776+0x8
-	ldr	r1, .L776+0xc
+	ldr	r4, .L777+0x8
+	ldr	r1, .L777+0xc
 	add	r0, r4, #0
 	bl	StringExpandPlaceholders
 	mov	r0, #0x1
@@ -6876,16 +6882,16 @@ Task_ItemContext_Deposit:
 	add	r0, r6, #0
 	sub	r0, r0, #0x8
 	add	r0, r5, r0
-	ldr	r1, .L776+0x10
+	ldr	r1, .L777+0x10
 	str	r1, [r0]
-.L773:
+.L774:
 	add	sp, sp, #0x14
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L777:
+.L778:
 	.align	2, 0
-.L776:
+.L777:
 	.word	gSpecialVar_ItemId
 	.word	gStringVar1
 	.word	gStringVar4
@@ -6905,7 +6911,7 @@ sub_81ADA7C:
 	lsl	r0, r4, #0x2
 	add	r0, r0, r4
 	lsl	r0, r0, #0x3
-	ldr	r1, .L784
+	ldr	r1, .L785
 	add	r5, r0, r1
 	add	r0, r5, #0
 	add	r0, r0, #0x10
@@ -6914,45 +6920,45 @@ sub_81ADA7C:
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0x1
-	bne	.L779	@cond_branch
-	ldr	r0, .L784+0x4
+	bne	.L780	@cond_branch
+	ldr	r0, .L785+0x4
 	ldr	r0, [r0]
-	ldr	r1, .L784+0x8
+	ldr	r1, .L785+0x8
 	add	r0, r0, r1
 	ldrb	r0, [r0]
 	mov	r2, #0x10
 	ldrsh	r1, [r5, r2]
 	bl	PrintItemDepositAmount
-	b	.L780
-.L785:
+	b	.L781
+.L786:
 	.align	2, 0
-.L784:
+.L785:
 	.word	gTasks+0x8
 	.word	gBagMenu
 	.word	0x817
-.L779:
-	ldr	r0, .L786
+.L780:
+	ldr	r0, .L787
 	ldrh	r1, [r0, #0x2e]
 	mov	r0, #0x1
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L781	@cond_branch
+	beq	.L782	@cond_branch
 	mov	r0, #0x5
 	bl	PlaySE
 	mov	r0, #0x7
 	bl	BagMenu_RemoveWindow
 	add	r0, r4, #0
 	bl	sub_81ADB14
-	b	.L780
-.L787:
+	b	.L781
+.L788:
 	.align	2, 0
-.L786:
+.L787:
 	.word	gMain
-.L781:
+.L782:
 	mov	r0, #0x2
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L780	@cond_branch
+	beq	.L781	@cond_branch
 	mov	r0, #0x5
 	bl	PlaySE
 	mov	r1, #0x2
@@ -6965,7 +6971,7 @@ sub_81ADA7C:
 	bl	BagMenu_RemoveWindow
 	add	r0, r6, #0
 	bl	set_callback3_to_bag
-.L780:
+.L781:
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
@@ -6986,7 +6992,7 @@ sub_81ADB14:
 	lsl	r1, r0, #0x2
 	add	r1, r1, r0
 	lsl	r7, r1, #0x3
-	ldr	r0, .L795
+	ldr	r0, .L796
 	mov	r9, r0
 	add	r2, r7, #0
 	add	r2, r2, r9
@@ -6994,14 +7000,14 @@ sub_81ADB14:
 	mov	r0, #0x1
 	mov	r1, #0x0
 	bl	FillWindowPixelBuffer
-	ldr	r4, .L795+0x4
+	ldr	r4, .L796+0x4
 	ldrh	r0, [r4]
 	bl	ItemId_GetImportance
 	lsl	r0, r0, #0x18
 	lsr	r5, r0, #0x18
 	cmp	r5, #0
-	beq	.L789	@cond_branch
-	ldr	r2, .L795+0x8
+	beq	.L790	@cond_branch
+	ldr	r2, .L796+0x8
 	mov	r0, #0x1
 	str	r0, [sp]
 	mov	r0, #0x0
@@ -7010,14 +7016,14 @@ sub_81ADB14:
 	str	r0, [sp, #0xc]
 	str	r0, [sp, #0x10]
 	mov	r0, #0x1
-	b	.L793
-.L796:
+	b	.L794
+.L797:
 	.align	2, 0
-.L795:
+.L796:
 	.word	gTasks+0x8
 	.word	gSpecialVar_ItemId
 	.word	gText_CantStoreImportantItems
-.L789:
+.L790:
 	ldrh	r0, [r4]
 	mov	r3, r8
 	ldrh	r1, [r3, #0x10]
@@ -7025,19 +7031,19 @@ sub_81ADB14:
 	lsl	r0, r0, #0x18
 	lsr	r6, r0, #0x18
 	cmp	r6, #0x1
-	bne	.L791	@cond_branch
+	bne	.L792	@cond_branch
 	ldrh	r0, [r4]
-	ldr	r1, .L797
+	ldr	r1, .L798
 	bl	CopyItemName
-	ldr	r0, .L797+0x4
+	ldr	r0, .L798+0x4
 	mov	r2, r8
 	mov	r3, #0x10
 	ldrsh	r1, [r2, r3]
 	mov	r2, #0x0
 	mov	r3, #0x3
 	bl	ConvertIntToDecimalStringN
-	ldr	r4, .L797+0x8
-	ldr	r1, .L797+0xc
+	ldr	r4, .L798+0x8
+	ldr	r1, .L798+0xc
 	add	r0, r4, #0
 	bl	StringExpandPlaceholders
 	str	r6, [sp]
@@ -7053,33 +7059,33 @@ sub_81ADB14:
 	mov	r0, r9
 	sub	r0, r0, #0x8
 	add	r0, r7, r0
-	ldr	r1, .L797+0x10
-	b	.L794
-.L798:
+	ldr	r1, .L798+0x10
+	b	.L795
+.L799:
 	.align	2, 0
-.L797:
+.L798:
 	.word	gStringVar1
 	.word	gStringVar2
 	.word	gStringVar4
 	.word	gText_DepositedVar2Var1s
 	.word	Task_ActuallyToss
-.L791:
-	ldr	r2, .L799
+.L792:
+	ldr	r2, .L800
 	mov	r0, #0x1
 	str	r0, [sp]
 	str	r5, [sp, #0x4]
 	str	r5, [sp, #0x8]
 	str	r5, [sp, #0xc]
 	str	r5, [sp, #0x10]
-.L793:
+.L794:
 	mov	r1, #0x1
 	mov	r3, #0x3
 	bl	BagMenu_Print
 	mov	r0, r9
 	sub	r0, r0, #0x8
 	add	r0, r7, r0
-	ldr	r1, .L799+0x4
-.L794:
+	ldr	r1, .L800+0x4
+.L795:
 	str	r1, [r0]
 	add	sp, sp, #0x14
 	pop	{r3, r4}
@@ -7088,9 +7094,9 @@ sub_81ADB14:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L800:
+.L801:
 	.align	2, 0
-.L799:
+.L800:
 	.word	gText_NoRoomForItems
 	.word	sub_81ADC0C
 .Lfe96:
@@ -7106,14 +7112,14 @@ sub_81ADC0C:
 	lsl	r0, r4, #0x2
 	add	r0, r0, r4
 	lsl	r0, r0, #0x3
-	ldr	r1, .L803
+	ldr	r1, .L804
 	add	r5, r0, r1
-	ldr	r0, .L803+0x4
+	ldr	r0, .L804+0x4
 	ldrh	r1, [r0, #0x2e]
 	mov	r0, #0x3
 	and	r0, r0, r1
 	cmp	r0, #0
-	beq	.L802	@cond_branch
+	beq	.L803	@cond_branch
 	mov	r0, #0x5
 	bl	PlaySE
 	mov	r1, #0x2
@@ -7124,13 +7130,13 @@ sub_81ADC0C:
 	bl	BagMenu_PrintCursor_
 	add	r0, r4, #0
 	bl	set_callback3_to_bag
-.L802:
+.L803:
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
-.L804:
+.L805:
 	.align	2, 0
-.L803:
+.L804:
 	.word	gTasks+0x8
 	.word	gMain
 .Lfe97:
@@ -7141,19 +7147,19 @@ sub_81ADC0C:
 	.thumb_func
 IsWallysBag:
 	push	{lr}
-	ldr	r0, .L808
+	ldr	r0, .L809
 	ldrb	r0, [r0, #0x4]
 	cmp	r0, #0xa
-	beq	.L806	@cond_branch
+	beq	.L807	@cond_branch
 	mov	r0, #0x0
-	b	.L807
-.L809:
+	b	.L808
+.L810:
 	.align	2, 0
-.L808:
+.L809:
 	.word	gBagPositionStruct
-.L806:
-	mov	r0, #0x1
 .L807:
+	mov	r0, #0x1
+.L808:
 	pop	{r1}
 	bx	r1
 .Lfe98:
@@ -7164,11 +7170,11 @@ IsWallysBag:
 	.thumb_func
 PrepareBagForWallyTutorial:
 	push	{r4, r5, r6, lr}
-	ldr	r4, .L816
+	ldr	r4, .L817
 	mov	r0, #0xd0
 	bl	AllocZeroed
 	str	r0, [r4]
-	ldr	r5, .L816+0x4
+	ldr	r5, .L817+0x4
 	ldr	r1, [r5]
 	mov	r2, #0xac
 	lsl	r2, r2, #0x3
@@ -7184,14 +7190,14 @@ PrepareBagForWallyTutorial:
 	mov	r2, #0x40
 	bl	memcpy
 	ldr	r0, [r4]
-	ldr	r2, .L816+0x8
+	ldr	r2, .L817+0x8
 	ldrb	r1, [r2, #0x5]
 	add	r0, r0, #0xce
 	strh	r1, [r0]
 	mov	r6, #0x0
 	add	r5, r2, #0
 	add	r5, r5, #0x8
-.L814:
+.L815:
 	ldr	r2, [r4]
 	lsl	r3, r6, #0x1
 	add	r0, r2, #0
@@ -7206,8 +7212,8 @@ PrepareBagForWallyTutorial:
 	add	r5, r5, #0x2
 	add	r6, r6, #0x1
 	cmp	r6, #0x4
-	bls	.L814	@cond_branch
-	ldr	r4, .L816+0x4
+	bls	.L815	@cond_branch
+	ldr	r4, .L817+0x4
 	ldr	r0, [r4]
 	mov	r1, #0xac
 	lsl	r1, r1, #0x3
@@ -7224,9 +7230,9 @@ PrepareBagForWallyTutorial:
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L817:
+.L818:
 	.align	2, 0
-.L816:
+.L817:
 	.word	sTempWallyBag
 	.word	gSaveBlock1Ptr
 	.word	gBagPositionStruct
@@ -7238,12 +7244,12 @@ PrepareBagForWallyTutorial:
 	.thumb_func
 RestoreBagAfterWallyTutorial:
 	push	{r4, r5, r6, lr}
-	ldr	r5, .L824
+	ldr	r5, .L825
 	ldr	r0, [r5]
 	mov	r1, #0xac
 	lsl	r1, r1, #0x3
 	add	r0, r0, r1
-	ldr	r4, .L824+0x4
+	ldr	r4, .L825+0x4
 	ldr	r1, [r4]
 	mov	r2, #0x78
 	bl	memcpy
@@ -7255,7 +7261,7 @@ RestoreBagAfterWallyTutorial:
 	add	r1, r1, #0x78
 	mov	r2, #0x40
 	bl	memcpy
-	ldr	r1, .L824+0x8
+	ldr	r1, .L825+0x8
 	ldr	r0, [r4]
 	add	r0, r0, #0xce
 	ldrh	r0, [r0]
@@ -7264,7 +7270,7 @@ RestoreBagAfterWallyTutorial:
 	add	r6, r4, #0
 	add	r3, r1, #0
 	add	r3, r3, #0x8
-.L822:
+.L823:
 	lsl	r2, r5, #0x1
 	ldr	r1, [r4]
 	add	r0, r1, #0
@@ -7279,15 +7285,15 @@ RestoreBagAfterWallyTutorial:
 	add	r3, r3, #0x2
 	add	r5, r5, #0x1
 	cmp	r5, #0x4
-	bls	.L822	@cond_branch
+	bls	.L823	@cond_branch
 	ldr	r0, [r6]
 	bl	Free
 	pop	{r4, r5, r6}
 	pop	{r0}
 	bx	r0
-.L825:
+.L826:
 	.align	2, 0
-.L824:
+.L825:
 	.word	gSaveBlock1Ptr
 	.word	sTempWallyBag
 	.word	gBagPositionStruct
@@ -7306,15 +7312,15 @@ DoWallyTutorialBagMenu:
 	mov	r0, #0x4
 	mov	r1, #0x1
 	bl	AddBagItem
-	ldr	r2, .L827
+	ldr	r2, .L828
 	mov	r0, #0xa
 	mov	r1, #0x0
 	bl	GoToBagMenu
 	pop	{r0}
 	bx	r0
-.L828:
+.L829:
 	.align	2, 0
-.L827:
+.L828:
 	.word	CB2_SetUpReshowBattleScreenAfterMenu2
 .Lfe101:
 	.size	 DoWallyTutorialBagMenu,.Lfe101-DoWallyTutorialBagMenu
@@ -7329,59 +7335,59 @@ Task_WallyTutorialBagMenu:
 	lsl	r0, r5, #0x2
 	add	r0, r0, r5
 	lsl	r0, r0, #0x3
-	ldr	r1, .L838
+	ldr	r1, .L839
 	add	r4, r0, r1
-	ldr	r0, .L838+0x4
+	ldr	r0, .L839+0x4
 	ldrb	r1, [r0, #0x7]
 	mov	r0, #0x80
 	and	r0, r0, r1
 	cmp	r0, #0
-	bne	.L830	@cond_branch
+	bne	.L831	@cond_branch
 	mov	r0, #0x10
 	ldrsh	r1, [r4, r0]
 	cmp	r1, #0xcc
-	beq	.L833	@cond_branch
+	beq	.L834	@cond_branch
 	cmp	r1, #0xcc
-	bgt	.L837	@cond_branch
+	bgt	.L838	@cond_branch
 	cmp	r1, #0x66
-	beq	.L832	@cond_branch
-	b	.L835
-.L839:
+	beq	.L833	@cond_branch
+	b	.L836
+.L840:
 	.align	2, 0
-.L838:
+.L839:
 	.word	gTasks+0x8
 	.word	gPaletteFade
-.L837:
+.L838:
 	mov	r0, #0x99
 	lsl	r0, r0, #0x1
 	cmp	r1, r0
-	beq	.L834	@cond_branch
-	b	.L835
-.L832:
+	beq	.L835	@cond_branch
+	b	.L836
+.L833:
 	mov	r0, #0x5
 	bl	PlaySE
 	add	r0, r5, #0
 	mov	r1, #0x1
 	mov	r2, #0x0
 	bl	SwitchBagPocket
-	b	.L835
-.L833:
+	b	.L836
+.L834:
 	mov	r0, #0x5
 	bl	PlaySE
 	ldrb	r0, [r4]
 	mov	r1, #0x2
 	bl	BagMenu_PrintCursor_
-	ldr	r1, .L840
+	ldr	r1, .L841
 	mov	r0, #0x4
 	strh	r0, [r1]
 	add	r0, r5, #0
 	bl	OpenContextMenu
-	b	.L835
-.L841:
+	b	.L836
+.L842:
 	.align	2, 0
-.L840:
+.L841:
 	.word	gSpecialVar_ItemId
-.L834:
+.L835:
 	mov	r0, #0x5
 	bl	PlaySE
 	bl	BagMenu_RemoveSomeWindow
@@ -7392,12 +7398,12 @@ Task_WallyTutorialBagMenu:
 	bl	RestoreBagAfterWallyTutorial
 	add	r0, r5, #0
 	bl	Task_FadeAndCloseBagMenu
-	b	.L830
-.L835:
+	b	.L831
+.L836:
 	ldrh	r0, [r4, #0x10]
 	add	r0, r0, #0x1
 	strh	r0, [r4, #0x10]
-.L830:
+.L831:
 	pop	{r4, r5}
 	pop	{r0}
 	bx	r0
@@ -7412,11 +7418,11 @@ unknown_ItemMenu_Show:
 	add	r4, r0, #0
 	lsl	r4, r4, #0x18
 	lsr	r4, r4, #0x18
-	ldr	r1, .L843
-	ldr	r0, .L843+0x4
+	ldr	r1, .L844
+	ldr	r0, .L844+0x4
 	ldrh	r0, [r0]
 	strh	r0, [r1]
-	ldr	r1, .L843+0x8
+	ldr	r1, .L844+0x8
 	mov	r0, #0x1
 	strh	r0, [r1]
 	bl	BagMenu_RemoveSomeWindow
@@ -7425,9 +7431,9 @@ unknown_ItemMenu_Show:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L844:
+.L845:
 	.align	2, 0
-.L843:
+.L844:
 	.word	gSpecialVar_0x8005
 	.word	gSpecialVar_ItemId
 	.word	gSpecialVar_Result
@@ -7439,16 +7445,16 @@ unknown_ItemMenu_Show:
 	.thumb_func
 CB2_ApprenticeExitBagMenu:
 	push	{lr}
-	ldr	r0, .L846
-	ldr	r1, .L846+0x4
+	ldr	r0, .L847
+	ldr	r1, .L847+0x4
 	str	r1, [r0]
-	ldr	r0, .L846+0x8
+	ldr	r0, .L847+0x8
 	bl	SetMainCallback2
 	pop	{r0}
 	bx	r0
-.L847:
+.L848:
 	.align	2, 0
-.L846:
+.L847:
 	.word	gFieldCallback
 	.word	Apprentice_EnableBothScriptContexts
 	.word	CB2_ReturnToField
@@ -7463,11 +7469,11 @@ unknown_ItemMenu_Give2:
 	add	r4, r0, #0
 	lsl	r4, r4, #0x18
 	lsr	r4, r4, #0x18
-	ldr	r0, .L849
+	ldr	r0, .L850
 	ldrh	r0, [r0]
 	mov	r1, #0x1
 	bl	RemoveBagItem
-	ldr	r1, .L849+0x4
+	ldr	r1, .L850+0x4
 	mov	r0, #0x1
 	strh	r0, [r1]
 	bl	BagMenu_RemoveSomeWindow
@@ -7476,9 +7482,9 @@ unknown_ItemMenu_Give2:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L850:
+.L851:
 	.align	2, 0
-.L849:
+.L850:
 	.word	gSpecialVar_ItemId
 	.word	gSpecialVar_Result
 .Lfe105:
@@ -7489,16 +7495,16 @@ unknown_ItemMenu_Give2:
 	.thumb_func
 CB2_FavorLadyExitBagMenu:
 	push	{lr}
-	ldr	r0, .L852
-	ldr	r1, .L852+0x4
+	ldr	r0, .L853
+	ldr	r1, .L853+0x4
 	str	r1, [r0]
-	ldr	r0, .L852+0x8
+	ldr	r0, .L853+0x8
 	bl	SetMainCallback2
 	pop	{r0}
 	bx	r0
-.L853:
+.L854:
 	.align	2, 0
-.L852:
+.L853:
 	.word	gFieldCallback
 	.word	FieldCallback_FavorLadyEnableScriptContexts
 	.word	CB2_ReturnToField
@@ -7513,7 +7519,7 @@ unknown_ItemMenu_Confirm2:
 	add	r4, r0, #0
 	lsl	r4, r4, #0x18
 	lsr	r4, r4, #0x18
-	ldr	r1, .L855
+	ldr	r1, .L856
 	mov	r0, #0x1
 	strh	r0, [r1]
 	bl	BagMenu_RemoveSomeWindow
@@ -7522,9 +7528,9 @@ unknown_ItemMenu_Confirm2:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L856:
+.L857:
 	.align	2, 0
-.L855:
+.L856:
 	.word	gSpecialVar_Result
 .Lfe107:
 	.size	 unknown_ItemMenu_Confirm2,.Lfe107-unknown_ItemMenu_Confirm2
@@ -7534,16 +7540,16 @@ unknown_ItemMenu_Confirm2:
 	.thumb_func
 CB2_QuizLadyExitBagMenu:
 	push	{lr}
-	ldr	r0, .L858
-	ldr	r1, .L858+0x4
+	ldr	r0, .L859
+	ldr	r1, .L859+0x4
 	str	r1, [r0]
-	ldr	r0, .L858+0x8
+	ldr	r0, .L859+0x8
 	bl	SetMainCallback2
 	pop	{r0}
 	bx	r0
-.L859:
+.L860:
 	.align	2, 0
-.L858:
+.L859:
 	.word	gFieldCallback
 	.word	FieldCallback_QuizLadyEnableScriptContexts
 	.word	CB2_ReturnToField
@@ -7565,14 +7571,14 @@ BagMenu_PrintPocketNames:
 	mov	r1, #0
 	str	r0, [sp, #0x14]
 	str	r1, [sp, #0x18]
-	ldr	r1, .L862
+	ldr	r1, .L863
 	ldr	r0, [sp, #0x14]
 	and	r0, r0, r1
 	mov	r1, #0x80
 	lsl	r1, r1, #0x15
 	orr	r0, r0, r1
 	str	r0, [sp, #0x14]
-	ldr	r1, .L862+0x4
+	ldr	r1, .L863+0x4
 	ldr	r0, [sp, #0x18]
 	and	r0, r0, r1
 	mov	r1, #0x2
@@ -7606,7 +7612,7 @@ BagMenu_PrintPocketNames:
 	bl	BagMenu_Print
 	mov	r2, r8
 	cmp	r2, #0
-	beq	.L861	@cond_branch
+	beq	.L862	@cond_branch
 	mov	r0, #0x1
 	mov	r1, r8
 	mov	r2, #0x40
@@ -7625,15 +7631,15 @@ BagMenu_PrintPocketNames:
 	mov	r1, #0x1
 	mov	r2, r8
 	bl	BagMenu_Print
-.L861:
+.L862:
 	add	r0, r6, #0
 	mov	r1, #0x7
 	bl	GetWindowAttribute
-	ldr	r1, .L862+0x8
+	ldr	r1, .L863+0x8
 	ldr	r1, [r1]
-	ldr	r2, .L862+0xc
+	ldr	r2, .L863+0xc
 	add	r1, r1, r2
-	ldr	r2, .L862+0x10
+	ldr	r2, .L863+0x10
 	bl	CpuSet
 	add	r0, r6, #0
 	bl	RemoveWindow
@@ -7644,9 +7650,9 @@ BagMenu_PrintPocketNames:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L863:
+.L864:
 	.align	2, 0
-.L862:
+.L863:
 	.word	0xffffff
 	.word	-0x100
 	.word	gBagMenu
@@ -7662,12 +7668,12 @@ BagMenu_CopyPocketNameToWindow:
 	push	{r4, r5, r6, r7, lr}
 	add	r7, r0, #0
 	cmp	r7, #0x8
-	bls	.L865	@cond_branch
+	bls	.L866	@cond_branch
 	mov	r7, #0x8
-.L865:
-	ldr	r0, .L866
+.L866:
+	ldr	r0, .L867
 	ldr	r4, [r0]
-	ldr	r0, .L866+0x4
+	ldr	r0, .L867+0x4
 	add	r4, r4, r0
 	mov	r0, #0x2
 	mov	r1, #0x7
@@ -7675,7 +7681,7 @@ BagMenu_CopyPocketNameToWindow:
 	add	r5, r0, #0
 	lsl	r0, r7, #0x5
 	add	r0, r4, r0
-	ldr	r6, .L866+0x8
+	ldr	r6, .L867+0x8
 	add	r1, r5, #0
 	add	r2, r6, #0
 	bl	CpuSet
@@ -7696,9 +7702,9 @@ BagMenu_CopyPocketNameToWindow:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L867:
+.L868:
 	.align	2, 0
-.L866:
+.L867:
 	.word	gBagMenu
 	.word	0x844
 	.word	0x4000040
@@ -7710,7 +7716,7 @@ BagMenu_CopyPocketNameToWindow:
 	.thumb_func
 SetupBagMenu_Textboxes:
 	push	{r4, lr}
-	ldr	r0, .L874
+	ldr	r0, .L875
 	bl	InitWindows
 	bl	DeactivateAllTextPrinters
 	mov	r0, #0x0
@@ -7724,12 +7730,12 @@ SetupBagMenu_Textboxes:
 	mov	r0, #0xc0
 	mov	r1, #0x1
 	bl	sub_819A2BC
-	ldr	r0, .L874+0x4
+	ldr	r0, .L875+0x4
 	mov	r1, #0xf0
 	mov	r2, #0x20
 	bl	LoadPalette
 	mov	r4, #0x0
-.L872:
+.L873:
 	add	r0, r4, #0
 	mov	r1, #0x0
 	bl	FillWindowPixelBuffer
@@ -7739,7 +7745,7 @@ SetupBagMenu_Textboxes:
 	lsl	r0, r0, #0x18
 	lsr	r4, r0, #0x18
 	cmp	r4, #0x2
-	bls	.L872	@cond_branch
+	bls	.L873	@cond_branch
 	mov	r0, #0x0
 	bl	ScheduleBgCopyTilemapToVram
 	mov	r0, #0x1
@@ -7747,9 +7753,9 @@ SetupBagMenu_Textboxes:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L875:
+.L876:
 	.align	2, 0
-.L874:
+.L875:
 	.word	sDefaultBagWindows
 	.word	gUnknown_0860F074
 .Lfe111:
@@ -7791,7 +7797,7 @@ BagMenu_Print:
 	str	r6, [sp, #0x4]
 	lsl	r4, r5, #0x1
 	add	r4, r4, r5
-	ldr	r5, .L877
+	ldr	r5, .L878
 	add	r4, r4, r5
 	str	r4, [sp, #0x8]
 	mov	r4, r8
@@ -7808,9 +7814,9 @@ BagMenu_Print:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L878:
+.L879:
 	.align	2, 0
-.L877:
+.L878:
 	.word	sFontColorTable
 .Lfe112:
 	.size	 BagMenu_Print,.Lfe112-BagMenu_Print
@@ -7821,7 +7827,7 @@ BagMenu_Print:
 sub_81AE124:
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	ldr	r1, .L880
+	ldr	r1, .L881
 	ldr	r1, [r1]
 	mov	r2, #0x81
 	lsl	r2, r2, #0x4
@@ -7829,9 +7835,9 @@ sub_81AE124:
 	add	r1, r1, r0
 	ldrb	r0, [r1]
 	bx	lr
-.L881:
+.L882:
 	.align	2, 0
-.L880:
+.L881:
 	.word	gBagMenu
 .Lfe113:
 	.size	 sub_81AE124,.Lfe113-sub_81AE124
@@ -7843,7 +7849,7 @@ BagMenu_AddWindow:
 	push	{r4, lr}
 	lsl	r0, r0, #0x18
 	lsr	r2, r0, #0x18
-	ldr	r0, .L884
+	ldr	r0, .L885
 	mov	r3, #0x81
 	lsl	r3, r3, #0x4
 	add	r1, r2, r3
@@ -7851,9 +7857,9 @@ BagMenu_AddWindow:
 	add	r4, r0, r1
 	ldrb	r0, [r4]
 	cmp	r0, #0xff
-	bne	.L883	@cond_branch
+	bne	.L884	@cond_branch
 	lsl	r0, r2, #0x3
-	ldr	r1, .L884+0x4
+	ldr	r1, .L885+0x4
 	add	r0, r0, r1
 	bl	AddWindow
 	strb	r0, [r4]
@@ -7864,14 +7870,14 @@ BagMenu_AddWindow:
 	bl	DrawStdFrameWithCustomTileAndPalette
 	mov	r0, #0x1
 	bl	ScheduleBgCopyTilemapToVram
-.L883:
+.L884:
 	ldrb	r0, [r4]
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L885:
+.L886:
 	.align	2, 0
-.L884:
+.L885:
 	.word	gBagMenu
 	.word	sContextMenuWindowTemplates
 .Lfe114:
@@ -7884,7 +7890,7 @@ BagMenu_RemoveWindow:
 	push	{r4, lr}
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	ldr	r1, .L888
+	ldr	r1, .L889
 	mov	r2, #0x81
 	lsl	r2, r2, #0x4
 	add	r0, r0, r2
@@ -7892,7 +7898,7 @@ BagMenu_RemoveWindow:
 	add	r4, r1, r0
 	ldrb	r0, [r4]
 	cmp	r0, #0xff
-	beq	.L887	@cond_branch
+	beq	.L888	@cond_branch
 	mov	r1, #0x0
 	bl	ClearStdWindowAndFrameToTransparent
 	ldrb	r0, [r4]
@@ -7903,13 +7909,13 @@ BagMenu_RemoveWindow:
 	bl	ScheduleBgCopyTilemapToVram
 	mov	r0, #0xff
 	strb	r0, [r4]
-.L887:
+.L888:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L889:
+.L890:
 	.align	2, 0
-.L888:
+.L889:
 	.word	gBagMenu
 .Lfe115:
 	.size	 BagMenu_RemoveWindow,.Lfe115-BagMenu_RemoveWindow
@@ -7921,7 +7927,7 @@ AddItemMessageWindow:
 	push	{r4, lr}
 	lsl	r0, r0, #0x18
 	lsr	r2, r0, #0x18
-	ldr	r0, .L892
+	ldr	r0, .L893
 	mov	r3, #0x81
 	lsl	r3, r3, #0x4
 	add	r1, r2, r3
@@ -7929,20 +7935,20 @@ AddItemMessageWindow:
 	add	r4, r0, r1
 	ldrb	r0, [r4]
 	cmp	r0, #0xff
-	bne	.L891	@cond_branch
+	bne	.L892	@cond_branch
 	lsl	r0, r2, #0x3
-	ldr	r1, .L892+0x4
+	ldr	r1, .L893+0x4
 	add	r0, r0, r1
 	bl	AddWindow
 	strb	r0, [r4]
-.L891:
+.L892:
 	ldrb	r0, [r4]
 	pop	{r4}
 	pop	{r1}
 	bx	r1
-.L893:
+.L894:
 	.align	2, 0
-.L892:
+.L893:
 	.word	gBagMenu
 	.word	sContextMenuWindowTemplates
 .Lfe116:
@@ -7955,7 +7961,7 @@ bag_menu_RemoveBagItem_message_window:
 	push	{r4, lr}
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
-	ldr	r1, .L896
+	ldr	r1, .L897
 	mov	r2, #0x81
 	lsl	r2, r2, #0x4
 	add	r0, r0, r2
@@ -7963,7 +7969,7 @@ bag_menu_RemoveBagItem_message_window:
 	add	r4, r1, r0
 	ldrb	r0, [r4]
 	cmp	r0, #0xff
-	beq	.L895	@cond_branch
+	beq	.L896	@cond_branch
 	mov	r1, #0x0
 	bl	ClearDialogWindowAndFrameToTransparent
 	ldrb	r0, [r4]
@@ -7974,13 +7980,13 @@ bag_menu_RemoveBagItem_message_window:
 	bl	ScheduleBgCopyTilemapToVram
 	mov	r0, #0xff
 	strb	r0, [r4]
-.L895:
+.L896:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L897:
+.L898:
 	.align	2, 0
-.L896:
+.L897:
 	.word	gBagMenu
 .Lfe117:
 	.size	 bag_menu_RemoveBagItem_message_window,.Lfe117-bag_menu_RemoveBagItem_message_window
@@ -7995,7 +8001,7 @@ BagMenu_YesNo:
 	lsr	r0, r0, #0x18
 	lsl	r1, r1, #0x18
 	lsr	r1, r1, #0x15
-	ldr	r3, .L899
+	ldr	r3, .L900
 	add	r1, r1, r3
 	mov	r3, #0x2
 	str	r3, [sp]
@@ -8010,9 +8016,9 @@ BagMenu_YesNo:
 	add	sp, sp, #0x10
 	pop	{r0}
 	bx	r0
-.L900:
+.L901:
 	.align	2, 0
-.L899:
+.L900:
 	.word	sContextMenuWindowTemplates
 .Lfe118:
 	.size	 BagMenu_YesNo,.Lfe118-BagMenu_YesNo
@@ -8027,7 +8033,7 @@ DisplayCurrentMoneyWindow:
 	add	r4, r0, #0
 	lsl	r4, r4, #0x18
 	lsr	r4, r4, #0x18
-	ldr	r0, .L902
+	ldr	r0, .L903
 	ldr	r0, [r0]
 	mov	r1, #0x92
 	lsl	r1, r1, #0x3
@@ -8044,9 +8050,9 @@ DisplayCurrentMoneyWindow:
 	pop	{r4}
 	pop	{r0}
 	bx	r0
-.L903:
+.L904:
 	.align	2, 0
-.L902:
+.L903:
 	.word	gSaveBlock1Ptr
 .Lfe119:
 	.size	 DisplayCurrentMoneyWindow,.Lfe119-DisplayCurrentMoneyWindow
@@ -8115,10 +8121,10 @@ PrintTMHMMoveData:
 	mov	r1, #0x0
 	bl	FillWindowPixelBuffer
 	cmp	r4, #0
-	bne	.L907	@cond_branch
+	bne	.L908	@cond_branch
 	mov	r4, #0x0
 	mov	r5, #0x0
-.L911:
+.L912:
 	lsl	r0, r4, #0x1
 	add	r0, r0, r4
 	lsl	r0, r0, #0x1a
@@ -8131,28 +8137,28 @@ PrintTMHMMoveData:
 	mov	r0, #0x4
 	str	r0, [sp, #0x10]
 	mov	r1, #0x1
-	ldr	r2, .L918
+	ldr	r2, .L919
 	mov	r3, #0x7
 	bl	BagMenu_Print
 	add	r0, r4, #0x1
 	lsl	r0, r0, #0x18
 	lsr	r4, r0, #0x18
 	cmp	r4, #0x3
-	bls	.L911	@cond_branch
+	bls	.L912	@cond_branch
 	mov	r0, #0x4
 	mov	r1, #0x2
 	bl	CopyWindowToVram
-	b	.L913
-.L919:
+	b	.L914
+.L920:
 	.align	2, 0
-.L918:
+.L919:
 	.word	gText_ThreeDashes
-.L907:
+.L908:
 	add	r0, r4, #0
 	bl	ItemIdToBattleMoveId
 	lsl	r0, r0, #0x10
 	lsr	r7, r0, #0x10
-	ldr	r1, .L920
+	ldr	r1, .L921
 	lsl	r0, r7, #0x1
 	add	r0, r0, r7
 	lsl	r0, r0, #0x2
@@ -8167,23 +8173,23 @@ PrintTMHMMoveData:
 	bl	blit_move_info_icon
 	ldrb	r0, [r5, #0x1]
 	cmp	r0, #0x1
-	bhi	.L914	@cond_branch
-	ldr	r2, .L920+0x4
-	b	.L915
-.L921:
+	bhi	.L915	@cond_branch
+	ldr	r2, .L921+0x4
+	b	.L916
+.L922:
 	.align	2, 0
-.L920:
+.L921:
 	.word	gBattleMoves
 	.word	gText_ThreeDashes
-.L914:
-	ldr	r4, .L922
+.L915:
+	ldr	r4, .L923
 	ldrb	r1, [r5, #0x1]
 	add	r0, r4, #0
 	mov	r2, #0x1
 	mov	r3, #0x3
 	bl	ConvertIntToDecimalStringN
 	add	r2, r4, #0
-.L915:
+.L916:
 	mov	r0, #0xc
 	str	r0, [sp]
 	mov	r0, #0x0
@@ -8196,7 +8202,7 @@ PrintTMHMMoveData:
 	mov	r1, #0x1
 	mov	r3, #0x7
 	bl	BagMenu_Print
-	ldr	r2, .L922+0x4
+	ldr	r2, .L923+0x4
 	lsl	r1, r7, #0x1
 	add	r0, r1, r7
 	lsl	r0, r0, #0x2
@@ -8204,24 +8210,24 @@ PrintTMHMMoveData:
 	ldrb	r0, [r2, #0x3]
 	add	r6, r1, #0
 	cmp	r0, #0
-	bne	.L916	@cond_branch
-	ldr	r2, .L922+0x8
-	b	.L917
-.L923:
+	bne	.L917	@cond_branch
+	ldr	r2, .L923+0x8
+	b	.L918
+.L924:
 	.align	2, 0
-.L922:
+.L923:
 	.word	gStringVar1
 	.word	gBattleMoves
 	.word	gText_ThreeDashes
-.L916:
-	ldr	r4, .L924
+.L917:
+	ldr	r4, .L925
 	ldrb	r1, [r2, #0x3]
 	add	r0, r4, #0
 	mov	r2, #0x1
 	mov	r3, #0x3
 	bl	ConvertIntToDecimalStringN
 	add	r2, r4, #0
-.L917:
+.L918:
 	mov	r0, #0x18
 	str	r0, [sp]
 	mov	r4, #0x0
@@ -8236,8 +8242,8 @@ PrintTMHMMoveData:
 	mov	r1, #0x1
 	mov	r3, #0x7
 	bl	BagMenu_Print
-	ldr	r5, .L924
-	ldr	r1, .L924+0x4
+	ldr	r5, .L925
+	ldr	r1, .L925+0x4
 	add	r0, r6, r7
 	lsl	r0, r0, #0x2
 	add	r0, r0, r1
@@ -8262,7 +8268,7 @@ PrintTMHMMoveData:
 	mov	r0, #0x4
 	mov	r1, #0x2
 	bl	CopyWindowToVram
-.L913:
+.L914:
 	add	sp, sp, #0x14
 	pop	{r3, r4}
 	mov	r8, r3
@@ -8270,9 +8276,9 @@ PrintTMHMMoveData:
 	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
-.L925:
+.L926:
 	.align	2, 0
-.L924:
+.L925:
 	.word	gStringVar1
 	.word	gBattleMoves
 .Lfe122:

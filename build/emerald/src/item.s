@@ -22810,7 +22810,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM01Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -22827,7 +22828,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM02Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -22844,7 +22846,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM03Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -22861,7 +22864,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM04Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -22878,7 +22882,8 @@ gItems:
 	.short	0x3e8
 	.space	2
 	.word	sTM05Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -22895,7 +22900,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM06Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -22912,7 +22918,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM07Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -22929,7 +22936,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM08Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -22946,7 +22954,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM09Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -22963,7 +22972,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM10Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -22980,7 +22990,8 @@ gItems:
 	.short	0x7d0
 	.space	2
 	.word	sTM11Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -22997,7 +23008,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM12Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23014,7 +23026,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM13Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23031,7 +23044,8 @@ gItems:
 	.short	0x157c
 	.space	2
 	.word	sTM14Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23048,7 +23062,8 @@ gItems:
 	.short	0x1d4c
 	.space	2
 	.word	sTM15Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23065,7 +23080,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM16Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23082,7 +23098,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM17Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23099,7 +23116,8 @@ gItems:
 	.short	0x7d0
 	.space	2
 	.word	sTM18Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23116,7 +23134,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM19Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23133,7 +23152,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM20Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23150,7 +23170,8 @@ gItems:
 	.short	0x3e8
 	.space	2
 	.word	sTM21Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23167,7 +23188,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM22Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23184,7 +23206,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM23Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23201,7 +23224,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM24Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23218,7 +23242,8 @@ gItems:
 	.short	0x157c
 	.space	2
 	.word	sTM25Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23235,7 +23260,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM26Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23252,7 +23278,8 @@ gItems:
 	.short	0x3e8
 	.space	2
 	.word	sTM27Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23269,7 +23296,8 @@ gItems:
 	.short	0x7d0
 	.space	2
 	.word	sTM28Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23286,7 +23314,8 @@ gItems:
 	.short	0x7d0
 	.space	2
 	.word	sTM29Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23303,7 +23332,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM30Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23320,7 +23350,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM31Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23337,7 +23368,8 @@ gItems:
 	.short	0x7d0
 	.space	2
 	.word	sTM32Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23354,7 +23386,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM33Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23371,7 +23404,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM34Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23388,7 +23422,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM35Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23405,7 +23440,8 @@ gItems:
 	.short	0x3e8
 	.space	2
 	.word	sTM36Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23422,7 +23458,8 @@ gItems:
 	.short	0x7d0
 	.space	2
 	.word	sTM37Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23439,7 +23476,8 @@ gItems:
 	.short	0x157c
 	.space	2
 	.word	sTM38Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23456,7 +23494,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM39Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23473,7 +23512,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM40Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23490,7 +23530,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM41Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23507,7 +23548,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM42Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23524,7 +23566,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM43Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23541,7 +23584,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM44Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23558,7 +23602,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM45Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23575,7 +23620,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM46Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23592,7 +23638,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM47Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23609,7 +23656,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM48Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23626,7 +23674,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM49Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM
@@ -23643,7 +23692,8 @@ gItems:
 	.short	0xbb8
 	.space	2
 	.word	sTM50Desc
-	.space	2
+	.byte	0x1
+	.space	1
 	.byte	0x3
 	.byte	0x1
 	.word	ItemUseOutOfBattle_TMHM

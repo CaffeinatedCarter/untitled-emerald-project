@@ -6157,6 +6157,40 @@ gText_NoMoreRoomForThis:
 	.byte	0x9
 	.byte	0xff
 	.size	 gText_NoMoreRoomForThis,39
+	.globl	gText_YouAlreadyHaveThis
+	.type	 gText_YouAlreadyHaveThis,object
+gText_YouAlreadyHaveThis:
+	.byte	0xd3
+	.byte	0xe3
+	.byte	0xe9
+	.byte	0x0
+	.byte	0xd5
+	.byte	0xe0
+	.byte	0xe6
+	.byte	0xd9
+	.byte	0xd5
+	.byte	0xd8
+	.byte	0xed
+	.byte	0x0
+	.byte	0xdc
+	.byte	0xd5
+	.byte	0xea
+	.byte	0xd9
+	.byte	0x0
+	.byte	0xe8
+	.byte	0xdc
+	.byte	0xdd
+	.byte	0xe7
+	.byte	0x0
+	.byte	0xdd
+	.byte	0xe8
+	.byte	0xd9
+	.byte	0xe1
+	.byte	0xad
+	.byte	0xfc
+	.byte	0x9
+	.byte	0xff
+	.size	 gText_YouAlreadyHaveThis,30
 	.globl	gText_SpaceForVar1Full
 	.type	 gText_SpaceForVar1Full,object
 gText_SpaceForVar1Full:
