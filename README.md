@@ -1,4 +1,4 @@
-# Untitled (Epsilon?) Emerald Project
+# Untitled (Clarified?) Emerald Project
 
 ## Wish List
 ### Big changes
