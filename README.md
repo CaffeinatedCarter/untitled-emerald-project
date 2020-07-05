@@ -41,6 +41,19 @@
 - ORAS breeding and more transparency in breeding overall. Explain mechanics etc
 - Mirage island should appear with a premonition Pokémon in ur party like Xatu. Should have a legendary if going in post-game
 - Make gender make sense. No female Mr Mime or male jynx. Gardevoir and Gallade split etc
+- Rebalance super effective moves and evaluate STAB bonus
+- Pokeballs themed after trainer classes
+- More melanin in character models
+- Berries need to be more prevalent and easier to deal with
+- More bag storage
+- Rebalancing friendship so you’re not “instantly” friends w Pokémon. Potentially affection?
+- Bag sorting
+- Remove critical hits entirely
+- Nuzlocke settings with how your game ends
+- Evasiveness?? Either make it more prominent or less prominent
+- Restructure Steven into the main story
+- shorten beeping sound for low health
+- Little phrases from prominent trainers when the battle is almost over
 - (done) Allow running indoors
 - (done) Make TMs infinite/unsellable/ungiveable
 
