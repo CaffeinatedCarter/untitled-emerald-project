@@ -43,6 +43,7 @@
 - ORAS breeding and more transparency in breeding overall. Explain mechanics etc
 - Mirage island should appear with a premonition Pokémon in ur party like Xatu. Should have a legendary if going in post-game
 - Make gender make sense. No female Mr Mime or male jynx. Gardevoir and Gallade split etc
+- Allow running indoors
 
 ## Area Ideas
 ### Expansions

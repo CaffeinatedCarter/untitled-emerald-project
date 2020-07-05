@@ -2551,29 +2551,17 @@ Bike_HandleBumpySlopeJump:
 IsRunningDisallowed:
 	push	{lr}
 	lsl	r0, r0, #0x18
-	lsr	r2, r0, #0x18
-	ldr	r0, .L385
-	ldrb	r1, [r0, #0x1a]
-	mov	r0, #0x4
-	and	r0, r0, r1
-	cmp	r0, #0
-	beq	.L382	@cond_branch
-	add	r0, r2, #0
+	lsr	r0, r0, #0x18
 	bl	IsRunningDisallowedByMetatile
 	lsl	r0, r0, #0x18
 	lsr	r0, r0, #0x18
 	cmp	r0, #0x1
-	bne	.L381	@cond_branch
-.L382:
-	mov	r0, #0x1
-	b	.L384
-.L386:
-	.align	2, 0
-.L385:
-	.word	gMapHeader
-.L381:
+	beq	.L381	@cond_branch
 	mov	r0, #0x0
-.L384:
+	b	.L383
+.L381:
+	mov	r0, #0x1
+.L383:
 	pop	{r1}
 	bx	r1
 .Lfe52:

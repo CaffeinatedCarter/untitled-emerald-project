@@ -4897,7 +4897,7 @@ void Bike_HandleBumpySlopeJump(void)
 
 bool32 IsRunningDisallowed(u8 metatile)
 {
-    if (!(gMapHeader.flags & (1 << 2)) || IsRunningDisallowedByMetatile(metatile) == 1)
+    if (IsRunningDisallowedByMetatile(metatile) == 1)
         return 1;
     else
         return 0;
