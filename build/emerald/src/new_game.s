@@ -116,7 +116,7 @@ SetDefaultOptions:
 	mov	r0, #0x8
 	neg	r0, r0
 	and	r0, r0, r1
-	mov	r1, #0x1
+	mov	r1, #0x2
 	orr	r0, r0, r1
 	strb	r0, [r2, #0x14]
 	ldr	r2, [r3]
@@ -125,10 +125,9 @@ SetDefaultOptions:
 	and	r0, r0, r1
 	strb	r0, [r2, #0x14]
 	ldr	r2, [r3]
-	ldrb	r1, [r2, #0x15]
-	mov	r0, #0x2
-	neg	r0, r0
-	and	r0, r0, r1
+	ldrb	r0, [r2, #0x15]
+	mov	r1, #0x1
+	orr	r0, r0, r1
 	strb	r0, [r2, #0x15]
 	ldr	r2, [r3]
 	ldrb	r1, [r2, #0x15]

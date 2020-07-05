@@ -6597,9 +6597,9 @@ static void InitPlayerTrainerId(void)
 
 static void SetDefaultOptions(void)
 {
-    gSaveBlock2Ptr->optionsTextSpeed = 1;
+    gSaveBlock2Ptr->optionsTextSpeed = 2;
     gSaveBlock2Ptr->optionsWindowFrameType = 0;
-    gSaveBlock2Ptr->optionsSound = 0;
+    gSaveBlock2Ptr->optionsSound = 1;
     gSaveBlock2Ptr->optionsBattleStyle = 0;
     gSaveBlock2Ptr->optionsBattleSceneOff = 0;
     gSaveBlock2Ptr->regionMapZoom = 0;
