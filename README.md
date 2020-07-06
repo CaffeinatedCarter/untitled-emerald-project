@@ -1,5 +1,9 @@
 # Untitled (Clarified?) Emerald Project
 
+The objective of this decompiled Pokémon Emerald ROM hack is to ground more of the Pokémon mechanics in reality and create a more robust experience by tweaking small things to make the game more fun to play.
+
+You can see how I hope to accomplish that in the [Projects Tab](https://github.com/descripteur/untitled-emerald-project/projects/)!
+
 ## Wish List
 ### Big changes
 * Removing unnecessary dialogue (press A to HM, picking up items, Nurse Joy dialogue can happen over cutscene, etc.)
