@@ -27148,6 +27148,33 @@ ItemId_GetSecondaryId:
 	.word	gItems
 .Lfe52:
 	.size	 ItemId_GetSecondaryId,.Lfe52-ItemId_GetSecondaryId
+	.align	2, 0
+	.globl	ItemId_GetHoldEffectParam_Script
+	.type	 ItemId_GetHoldEffectParam_Script,function
+	.thumb_func
+ItemId_GetHoldEffectParam_Script:
+	push	{r4, lr}
+	ldr	r4, .L432
+	ldr	r0, .L432+0x4
+	bl	VarGet
+	lsl	r0, r0, #0x10
+	lsr	r0, r0, #0x10
+	bl	ItemId_GetHoldEffectParam
+	add	r1, r0, #0
+	lsl	r1, r1, #0x18
+	lsr	r1, r1, #0x18
+	add	r0, r4, #0
+	bl	VarSet
+	pop	{r4}
+	pop	{r0}
+	bx	r0
+.L433:
+	.align	2, 0
+.L432:
+	.word	0x800d
+	.word	0x8004
+.Lfe53:
+	.size	 ItemId_GetHoldEffectParam_Script,.Lfe53-ItemId_GetHoldEffectParam_Script
 .text
 	.align	2, 0
 

@@ -10871,6 +10871,7 @@ static void Task_UseRepel(u8 taskId)
     if (!IsSEPlaying())
     {
         VarSet(0x4021, ItemId_GetHoldEffectParam(gSpecialVar_ItemId));
+        VarSet(0x40F7, gSpecialVar_ItemId);
         RemoveUsedItem();
         if (!InBattlePyramid())
             DisplayItemMessage(taskId, 1, gStringVar4, BagMenu_InitListsMenu);

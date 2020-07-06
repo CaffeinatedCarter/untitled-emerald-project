@@ -2537,31 +2537,34 @@ Task_StartUseRepel:
 	.type	 Task_UseRepel,function
 	.thumb_func
 Task_UseRepel:
-	push	{r4, r5, r6, lr}
+	push	{r4, r5, r6, r7, lr}
 	lsl	r0, r0, #0x18
-	lsr	r5, r0, #0x18
-	add	r6, r5, #0
+	lsr	r6, r0, #0x18
+	add	r7, r6, #0
 	bl	IsSEPlaying
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
 	bne	.L355	@cond_branch
-	ldr	r4, .L358
-	ldr	r0, .L358+0x4
-	ldrh	r0, [r0]
+	ldr	r5, .L358
+	ldr	r4, .L358+0x4
+	ldrh	r0, [r4]
 	bl	ItemId_GetHoldEffectParam
 	add	r1, r0, #0
 	lsl	r1, r1, #0x18
 	lsr	r1, r1, #0x18
-	add	r0, r4, #0
+	add	r0, r5, #0
+	bl	VarSet
+	ldr	r0, .L358+0x8
+	ldrh	r1, [r4]
 	bl	VarSet
 	bl	RemoveUsedItem
 	bl	InBattlePyramid
 	lsl	r0, r0, #0x18
 	cmp	r0, #0
 	bne	.L356	@cond_branch
-	ldr	r2, .L358+0x8
-	ldr	r3, .L358+0xc
-	add	r0, r5, #0
+	ldr	r2, .L358+0xc
+	ldr	r3, .L358+0x10
+	add	r0, r6, #0
 	mov	r1, #0x1
 	bl	DisplayItemMessage
 	b	.L355
@@ -2570,15 +2573,16 @@ Task_UseRepel:
 .L358:
 	.word	0x4021
 	.word	gSpecialVar_ItemId
+	.word	0x40f7
 	.word	gStringVar4
 	.word	BagMenu_InitListsMenu
 .L356:
 	ldr	r1, .L360
 	ldr	r2, .L360+0x4
-	add	r0, r6, #0
+	add	r0, r7, #0
 	bl	DisplayItemMessageInBattlePyramid
 .L355:
-	pop	{r4, r5, r6}
+	pop	{r4, r5, r6, r7}
 	pop	{r0}
 	bx	r0
 .L361:
@@ -3262,9 +3266,9 @@ ItemUseOutOfBattle_EnigmaBerry:
 	lsr	r0, r0, #0x18
 	sub	r0, r0, #0x1
 	cmp	r0, #0x14
-	bls	.LCB3960
+	bls	.LCB3966
 	b	.L482	@long jump
-.LCB3960:
+.LCB3966:
 	lsl	r0, r0, #0x2
 	ldr	r1, .L484+0x4
 	add	r0, r0, r1
